@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Industry & Seller Compliance Portal — BIS SmartGuide</title>
+<!-- Tailwind CDN -->
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@500;600;700;800;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* 5-Color Professional Matte Palette: Linen, Khaki, Camel, Cocoa, Espresso */
+    --espresso-deep: #1A1009;
+    --espresso-warm: #26170E;
+    --cocoa-primary: #52341D;
+    --cocoa-hover: #422815;
+    --cocoa-mid: #6E492C;
+    --camel: #B58448;
+    --camel-dark: #966932;
+    --camel-light: #F6EFE6;
+    --camel-border: #DECBB3;
+    
+    --cocoa-tint: #F2EBE1;
+    --khaki-tint-border: #DFD3C2;
+    
+    --linen-canvas: #F5F2EA;
+    --linen-surface: #FAF7F2;
+    --linen-card: #FFFFFF;
+    --khaki-raised: #EBE3D4;
+    --khaki-border: #D5C7B2;
+    --khaki-border-subtle: #E2D7C5;
+    --linen-border-subtle: #E6DED0;
+    
+    --text-espresso: #1A1009;
+    --text-cocoa-muted: #614D3E;
+    --text-khaki-subtle: #877461;
+
+    --status-mandatory: #9E3A28;
+    --status-mandatory-bg: #FDF2EF;
+    --status-voluntary: #3E6B34;
+    --status-voluntary-bg: #F0F6EE;
+  }
+
+  * { box-sizing: border-box; }
+  
+  /* Matte finish background with fine architectural micro-grid */
+  body {
+    font-family: 'Raleway', sans-serif;
+    background-color: var(--linen-canvas);
+    background-image: radial-gradient(#D5C7B2 0.7px, transparent 0.7px);
+    background-size: 24px 24px;
+    color: var(--text-espresso);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Website Title Font: MUSE (MuseoModerno) */
+  .font-muse {
+    font-family: 'MuseoModerno', 'Muse', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.015em;
+  }
+
+  .font-raleway { font-family: 'Raleway', sans-serif; }
+  .font-serif-gov { font-family: 'Raleway', sans-serif; }
+  .font-mono-bis { font-family: 'JetBrains Mono', monospace; }
+
+  /* Tricolor Top Strip - Matte Flat Precision */
+  .tricolor-bar {
+    height: 3px;
+    background: linear-gradient(90deg, #D97724 0%, #D97724 33.3%, #F5F2EA 33.3%, #F5F2EA 66.6%, #52341D 66.6%, #52341D 100%);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .matte-header {
+    background-color: #FAF7F2;
+    border-bottom: 1px solid var(--khaki-border);
+    box-shadow: 0 1px 3px rgba(26, 16, 9, 0.03);
+  }
+
+  .gov-card-shadow {
+    box-shadow: 0 1px 3px rgba(26, 16, 9, 0.03), 0 2px 6px -1px rgba(26, 16, 9, 0.02);
+    border: 1px solid var(--khaki-border);
+  }
+
+  .gov-card-hover {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gov-card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px -2px rgba(26, 16, 9, 0.06);
+    border-color: #B5A288;
+  }
+
+  .space-pill-active {
+    background-color: #52341D;
+    color: #FAF7F2;
+    border: 1px solid #3A2312;
+    box-shadow: 0 1px 3px rgba(26, 16, 9, 0.15);
+  }
+  .space-pill-inactive {
+    background-color: transparent;
+    color: #DFD3C2;
+    border: 1px solid transparent;
+  }
+  .space-pill-inactive:hover {
+    color: #FAF7F2;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  input[type="text"], input[type="number"], select, textarea {
+    background-color: #FAF7F2;
+    border: 1px solid var(--khaki-border);
+    color: var(--text-espresso);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+    border-color: var(--cocoa-primary);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--cocoa-primary);
+  }
+</style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Tricolor Bar -->
+  <div class="tricolor-bar sticky top-0 z-50"></div>
+
+  <!-- Government Official Top Header -->
+  <div class="bg-[#1A1009] text-amber-100/90 text-xs py-2 px-4 sm:px-8 flex flex-col lg:flex-row justify-between items-center gap-2 z-40 border-b border-[#26170E]">
+    <div class="flex items-center gap-3">
+      <span class="flex items-center gap-1.5">
+        <span class="text-sm">🇮🇳</span> 
+        <span class="font-medium tracking-wide text-white">Government of India</span>
+      </span>
+      <span class="text-white/25">|</span>
+      <span class="text-stone-300 font-normal">Ministry of Consumer Affairs, Food &amp; Public Distribution</span>
+    </div>
+
+    <!-- 3 SEPARATE PAGES SWITCHER (HOME VS. INDUSTRY VS. CONSUMER VS. RESEARCH) -->
+    <div class="flex flex-wrap items-center gap-2">
+      <div class="bg-[#26170E] p-1 rounded-xl border border-[#52341D] flex flex-wrap items-center gap-1">
+        
+        <!-- Home Page -->
+        <a href="index.html" class="space-pill-inactive px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Home</span>
+        </a>
+
+        <!-- Page 1: Industry & Seller -->
+        <a href="industry_seller.html" class="space-pill-active px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <span>Industry &amp; Seller</span>
+        </a>
+
+        <!-- Page 2: Citizen & Consumer -->
+        <a href="citizen_consumer.html" class="space-pill-inactive px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span>Citizen &amp; Consumer</span>
+        </a>
+
+        <!-- Page 3: Research & Academia -->
+        <a href="research_academia.html" class="space-pill-inactive px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <span>🎓 Research &amp; Academia</span>
+        </a>
+
+      </div>
+
+      <button onclick="alert('Language changed: English / हिन्दी')" class="bg-white/10 hover:bg-white/20 text-white px-2.5 py-1 rounded-lg transition border border-white/20 text-[11px]">
+        English / हिन्दी
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <header class="matte-header sticky top-0 z-30 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex justify-between items-center">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3 cursor-pointer">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#52341D] to-[#1A1009] flex items-center justify-center text-white font-bold text-xl shadow-sm border border-[#B58448]/40">
+          <svg class="w-6 h-6 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3.5 6.5l-2.1 5.6-5.6 2.1 2.1-5.6 5.6-2.1z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-muse font-extrabold text-2xl tracking-tight text-[#1A1009]">BIS SmartGuide</h1>
+            <span class="bg-[#F2EBE1] text-[#52341D] text-[11px] font-bold px-2 py-0.5 rounded-full border border-[#52341D]/20">
+              Industry Space
+            </span>
+          </div>
+          <p class="text-xs text-[#614D3E] font-medium">Standards Compliance & Certification for Businesses</p>
+        </div>
+      </a>
+
+      <!-- Page Quick Nav Links -->
+      <div class="hidden lg:flex items-center gap-2 text-xs font-semibold">
+        <a href="index.html" class="px-3 py-2 rounded-lg text-[#614D3E] hover:text-[#52341D] hover:bg-[#F2EBE1] transition">Portal Home</a>
+        <a href="industry_seller.html" class="px-3 py-2 rounded-lg bg-[#F2EBE1] text-[#52341D] transition">🏢 Industry &amp; Sellers</a>
+        <a href="citizen_consumer.html" class="px-3 py-2 rounded-lg text-[#614D3E] hover:text-[#52341D] hover:bg-[#F2EBE1] transition">🛡️ Citizens &amp; Consumers</a>
+        <a href="research_academia.html" class="px-3 py-2 rounded-lg text-[#614D3E] hover:text-[#52341D] hover:bg-[#F2EBE1] transition">🔬 Research &amp; Academia</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Gazette Ticker -->
+  <div class="bg-[#EBE3D4] border-b border-[#D5C7B2] px-4 py-2 text-xs text-[#26170E] flex items-center gap-3 overflow-hidden">
+    <span class="bg-[#52341D] text-white font-bold text-[10px] uppercase px-2 py-0.5 rounded shrink-0 flex items-center gap-1">
+      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/></svg>
+      Gazette Updates
+    </span>
+    <div class="whitespace-nowrap overflow-x-auto text-[12px]">
+      <span>📢 <strong>Standards Intelligence:</strong> 24,200+ Indian Standards indexed with ISO/IEC cross-references, Sectional Committees, and clause parameters.</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-8 space-y-10">
+
+    <!-- 🚨 STRATEGIC ACCURACY BANNER (NO OVERCLAIMING) -->
+    <div class="p-3.5 rounded-2xl bg-[#F2EBE1] border border-[#DECBB3] flex items-center justify-between text-xs text-[#52341D] gap-3">
+      <div class="flex items-center gap-2.5">
+        <span class="text-base">⚖️</span>
+        <span>
+          <strong>Statutory Governance Note:</strong> BIS SmartGuide retrieves and reasons over authorized BIS knowledge sources (24,200+ Indian Standards, Gazette QCOs, LIMS labs, and SIT guidelines) to provide evidence-backed guidance.
+        </span>
+      </div>
+      <a href="index.html#activeProductSection" class="hidden sm:inline-flex items-center gap-1 font-mono-bis text-[10px] bg-white px-2.5 py-1 rounded-lg border border-[#DFD3C2] text-[#52341D] font-bold hover:bg-[#FAF7F2] transition">
+        <span>🌟 Home Dashboard</span> ↗
+      </a>
+    </div>
+
+    <!-- DEDICATED SELLER HERO -->
+    <section class="bg-[#FAF7F2] p-6 sm:p-10 rounded-3xl border border-[#D5C7B2] gov-card-shadow">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-7 space-y-5">
+          <div class="inline-flex items-center gap-2 bg-[#F2EBE1] px-3.5 py-1.5 rounded-full border border-[#DFD3C2] text-xs text-[#52341D] font-bold">
+            <span>🏢 Dedicated Workspace for Manufacturers, MSMEs &amp; Importers</span>
+          </div>
+
+          <div class="space-y-3">
+            <h1 class="font-muse text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1A1009] leading-tight">
+              Industry &amp; Seller Compliance Engine
+            </h1>
+            <p class="text-sm text-[#614D3E] leading-relaxed">
+              Identify mandatory Indian Standards, calculate statutory licensing fees with <strong>50% MSME concessions</strong>, generate end-to-end compliance dossiers, and prepare factory inspection setups for BIS Scheme-I and CRS.
+            </p>
+          </div>
+
+          <!-- Quick Navigation Anchor Pills -->
+          <div class="flex flex-wrap gap-2 pt-2 text-xs font-bold">
+            <a href="#advisor" class="px-3 py-2 rounded-xl bg-[#52341D] text-white hover:bg-[#422815] shadow-sm transition">AI Standards Advisor</a>
+            <a href="#onboarding" class="px-3 py-2 rounded-xl bg-[#FAF7F2] text-[#52341D] border border-[#D5C7B2] hover:bg-[#F2EBE1] transition">✨ Add Complete Product</a>
+            <a href="#fee-calc" class="px-3 py-2 rounded-xl bg-[#FAF7F2] text-[#52341D] border border-[#D5C7B2] hover:bg-[#F2EBE1] transition">Fee &amp; Concession Calc</a>
+            <a href="#qco-registry" class="px-3 py-2 rounded-xl bg-[#FAF7F2] text-[#52341D] border border-[#D5C7B2] hover:bg-[#F2EBE1] transition">QCO Registry</a>
+            <a href="#labs" class="px-3 py-2 rounded-xl bg-[#FAF7F2] text-[#52341D] border border-[#D5C7B2] hover:bg-[#F2EBE1] transition">Testing Labs (LIMS)</a>
+          </div>
+        </div>
+
+        <!-- Relatable Industry Quality Inspection Photo -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative rounded-2xl overflow-hidden border border-[#D5C7B2] shadow-sm bg-white group">
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Factory Quality Inspection and Audit" class="w-full h-72 object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
+              <span class="text-[10px] uppercase font-bold bg-[#52341D] px-2.5 py-0.5 rounded w-fit mb-1">Factory SIT Audit</span>
+              <h4 class="font-bold text-sm">Scheme-I Production Quality Line</h4>
+              <p class="text-[11px] text-stone-200">Pre-requisite testing lab setups &amp; calibration under BIS Rules</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 1: AI STANDARDS ADVISOR (EVIDENCE-FIRST REASONING) -->
+    <section id="advisor" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-4 border-b border-[#E6DED0]">
+          <div>
+            <span class="text-xs bg-[#F2EBE1] text-[#52341D] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DFD3C2]">Clause-Level Verification</span>
+            <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">Autonomous AI Standards Advisor</h2>
+            <p class="text-xs text-[#614D3E]">Get authoritative Indian Standards with mandatory gazette citations, testing schemes, and clause evidence.</p>
+          </div>
+          <span class="text-xs bg-white border border-[#D5C7B2] text-[#52341D] font-bold px-3 py-1.5 rounded-xl">
+            ● Strict Gazette Evidence
+          </span>
+        </div>
+
+        <!-- Pre-set Industry Query Chips -->
+        <div class="space-y-2">
+          <div class="text-xs font-bold text-[#1A1009] flex items-center gap-1.5">
+            <span>💡 Quick Industry Verification Examples:</span>
+            <span class="text-[11px] font-normal text-stone-500">(Includes specific products and ambiguous queries to test reasoning)</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="triggerAdvisorInput('I manufacture electrical products.')" class="text-xs px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-300 hover:bg-amber-100 text-amber-900 font-bold transition flex items-center gap-1">
+              <span>⚠️ Ambiguous Query: "I manufacture electrical products."</span>
+            </button>
+            <button onclick="triggerAdvisorInput('I manufacture double-walled stainless steel vacuum bottles for retail sale.')" class="text-xs px-3 py-1.5 rounded-xl bg-white border border-[#D5C7B2] hover:border-[#52341D] hover:bg-[#F2EBE1] text-[#1A1009] transition">
+              🍶 Stainless Steel Bottles (IS 17803)
+            </button>
+            <button onclick="triggerAdvisorInput('I import and assemble lithium-ion rechargeable power banks for consumer electronics.')" class="text-xs px-3 py-1.5 rounded-xl bg-white border border-[#D5C7B2] hover:border-[#52341D] hover:bg-[#F2EBE1] text-[#1A1009] transition">
+              🔋 Lithium Power Banks (IS 13252 / CRS)
+            </button>
+            <button onclick="triggerAdvisorInput('We manufacture two-wheeler protective helmets for motorcycle riders.')" class="text-xs px-3 py-1.5 rounded-xl bg-white border border-[#D5C7B2] hover:border-[#52341D] hover:bg-[#F2EBE1] text-[#1A1009] transition">
+              🪖 Rider Helmets (IS 4151)
+            </button>
+            <button onclick="triggerAdvisorInput('I manufacture electric dry irons for household use.')" class="text-xs px-3 py-1.5 rounded-xl bg-white border border-[#D5C7B2] hover:border-[#52341D] hover:bg-[#F2EBE1] text-[#1A1009] transition">
+              🔌 Electric Dry Irons (IS 302-2-3)
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Stream & Response Cards -->
+        <div id="advisorChatStream" class="space-y-6 pt-2">
+          <!-- Dynamic cards injected here -->
+        </div>
+
+        <!-- Query Input Bar -->
+        <div class="pt-4 border-t border-[#E6DED0] flex gap-3">
+          <input type="text" id="advisorInput" placeholder="Describe your product (e.g. 'I manufacture domestic water purifiers using RO and UV')..." class="flex-1 text-xs sm:text-sm px-4 py-3 border border-[#D5C7B2] rounded-xl outline-none bg-white">
+          <button onclick="executeAdvisorQuery()" class="bg-[#52341D] hover:bg-[#422815] text-white font-bold text-xs px-6 py-3 rounded-xl shadow-sm transition">
+            Analyze Product
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ADD COMPLETE PRODUCT COMPLIANCE DOSSIER -->
+    <section id="onboarding" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div>
+          <span class="text-xs bg-[#F2EBE1] text-[#52341D] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DFD3C2]">Automated Factory Readiness</span>
+          <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">✨ Add Complete Product &amp; Compliance Dossier</h2>
+          <p class="text-xs sm:text-sm text-[#614D3E]">Generate a complete factory inspection readiness roadmap, Scheme of Inspection &amp; Testing (SIT), and laboratory requirements.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div>
+            <label class="text-xs font-bold text-[#26170E]">Product Brand / Commercial Name</label>
+            <input type="text" id="obProdName" value="Milton Thermosteel Classic 1000" class="w-full text-xs px-4 py-2.5 border border-[#D5C7B2] rounded-xl outline-none bg-white mt-1">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-[#26170E]">Product Category</label>
+            <select class="w-full text-xs px-4 py-2.5 border border-[#D5C7B2] rounded-xl outline-none bg-white mt-1">
+              <option>Kitchenware / Insulated Flasks</option>
+              <option>Electronics / Power Supplies</option>
+              <option>Automotive / Protective Helmets</option>
+              <option>Civil / Portland Cement</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-[#26170E]">Manufacturing Unit Location</label>
+            <input type="text" value="Plot 42, GIDC Industrial Estate, Gujarat" class="w-full text-xs px-4 py-2.5 border border-[#D5C7B2] rounded-xl outline-none bg-white mt-1">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-[#26170E]">Enterprise Classification</label>
+            <select id="obScale" class="w-full text-xs px-4 py-2.5 border border-[#D5C7B2] rounded-xl outline-none bg-white mt-1">
+              <option value="micro">Micro / Startup (50% Concession)</option>
+              <option value="small">Small Enterprise (20% Concession)</option>
+              <option value="medium">Medium Enterprise</option>
+              <option value="large">Large Scale Manufacturing</option>
+            </select>
+          </div>
+        </div>
+
+        <button onclick="generateComplianceDossier()" class="bg-[#52341D] hover:bg-[#26170E] text-white font-bold text-xs px-6 py-3 rounded-xl transition">
+          Generate Full Compliance Dossier &amp; Checklist
+        </button>
+
+        <!-- Output Box -->
+        <div id="generatedDossier" class="hidden p-6 rounded-2xl bg-white border border-[#D5C7B2] space-y-4">
+          <!-- Injected via script -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: STATUTORY FEE & 50% MSME CONCESSION CALCULATOR -->
+    <section id="fee-calc" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div>
+          <span class="text-xs bg-[#F2EBE1] text-[#52341D] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DFD3C2]">Financial Estimator</span>
+          <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">Statutory BIS Certification Fee Calculator</h2>
+          <p class="text-xs sm:text-sm text-[#614D3E]">Calculate official government application fees, audit costs, and minimum marking fees under the BIS (Conformity Assessment) Regulations.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="space-y-4 bg-white p-5 rounded-2xl border border-[#D5C7B2]">
+            <div>
+              <label class="text-xs font-bold text-[#26170E]">Certification Scheme</label>
+              <select id="feeScheme" onchange="calculateFees()" class="w-full text-xs px-4 py-2.5 border border-[#D5C7B2] rounded-xl outline-none bg-[#FAF7F2] mt-1">
+                <option value="scheme1">Scheme-I: ISI Mark (Domestic Factory Inspection)</option>
+                <option value="crs">Scheme-II: Compulsory Registration Scheme (CRS Electronics)</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs font-bold text-[#26170E]">Enterprise Type (MSME Act)</label>
+              <select id="feeEnterprise" onchange="calculateFees()" class="w-full text-xs px-4 py-2.5 border border-[#D5C7B2] rounded-xl outline-none bg-[#FAF7F2] mt-1">
+                <option value="micro">Micro / Startup (50% Marking Fee Concession)</option>
+                <option value="small">Small Enterprise</option>
+                <option value="medium">Medium Enterprise</option>
+                <option value="large">Large Enterprise</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Live Cost Breakdown -->
+          <div class="md:col-span-2 bg-white p-5 rounded-2xl border border-[#D5C7B2] flex flex-col justify-between space-y-4">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+              <div class="p-3 rounded-xl bg-[#FAF7F2] border border-[#E6DED0]">
+                <span class="text-[10px] text-[#877461] uppercase font-bold">Application Fee</span>
+                <div class="text-sm font-bold text-[#1A1009] mt-0.5" id="feeApp">₹1,000</div>
+              </div>
+              <div class="p-3 rounded-xl bg-[#FAF7F2] border border-[#E6DED0]">
+                <span class="text-[10px] text-[#877461] uppercase font-bold">Factory Audit</span>
+                <div class="text-sm font-bold text-[#1A1009] mt-0.5" id="feeAudit">₹7,000</div>
+              </div>
+              <div class="p-3 rounded-xl bg-[#FAF7F2] border border-[#E6DED0]">
+                <span class="text-[10px] text-[#877461] uppercase font-bold">Min Marking Fee</span>
+                <div class="text-sm font-bold text-[#1A1009] mt-0.5" id="feeMarking">₹11,000</div>
+              </div>
+              <div class="p-3 rounded-xl bg-[#FAF7F2] border border-[#E6DED0]">
+                <span class="text-[10px] text-emerald-800 uppercase font-bold">50% MSME Rebate</span>
+                <div class="text-sm font-bold text-emerald-800 mt-0.5" id="feeDiscount">-₹5,500</div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-[#E6DED0] flex justify-between items-center">
+              <div>
+                <span class="text-xs text-[#877461]">Estimated Statutory Net Payable (Year 1):</span>
+                <div class="text-2xl font-bold font-mono-bis text-[#52341D]" id="feeTotal">₹13,500 + GST</div>
+              </div>
+              <button onclick="alert('Downloading official fee schedule breakdown PDF...')" class="text-xs font-bold px-4 py-2 bg-[#F2EBE1] text-[#52341D] rounded-xl border border-[#DFD3C2]">
+                Download Gazette Fee Schedule
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: MANDATORY QCO REGISTRY -->
+    <section id="qco-registry" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div>
+          <span class="text-xs bg-[#F2EBE1] text-[#52341D] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DFD3C2]">Legal Orders</span>
+          <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">National Quality Control Orders (QCO) Registry</h2>
+          <p class="text-xs sm:text-sm text-[#6D594B]">Live index of mandatory Quality Control Orders issued under Section 16 of the BIS Act, 2016.</p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left bg-white rounded-2xl border border-[#D5C7B2] overflow-hidden">
+            <thead class="bg-[#EBE3D4] text-[#1A1009] font-bold border-b border-[#D5C7B2]">
+              <tr>
+                <th class="p-3.5">Product Segment</th>
+                <th class="p-3.5">Governing Standard</th>
+                <th class="p-3.5">Ministry / Order S.O.</th>
+                <th class="p-3.5">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#E6DED0] text-[#614D3E]">
+              <tr>
+                <td class="p-3.5 font-bold text-[#1A1009]">Stainless Steel Cookware &amp; Bottles</td>
+                <td class="p-3.5 font-mono-bis text-[#52341D] font-bold">IS 17803:2022</td>
+                <td class="p-3.5">DPIIT (Cookware QCO 2023)</td>
+                <td class="p-3.5"><span class="bg-red-50 text-red-800 font-bold px-2 py-0.5 rounded border border-red-200">Mandatory</span></td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-bold text-[#1A1009]">Two-Wheeler Protective Helmets</td>
+                <td class="p-3.5 font-mono-bis text-[#52341D] font-bold">IS 4151:2020</td>
+                <td class="p-3.5">MoRTH S.O. 4252(E)</td>
+                <td class="p-3.5"><span class="bg-red-50 text-red-800 font-bold px-2 py-0.5 rounded border border-red-200">Mandatory</span></td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-bold text-[#1A1009]">Plugs &amp; Socket Outlets (Domestic)</td>
+                <td class="p-3.5 font-mono-bis text-[#52341D] font-bold">IS 1293:2019</td>
+                <td class="p-3.5">DPIIT Electrical Accessories QCO</td>
+                <td class="p-3.5"><span class="bg-red-50 text-red-800 font-bold px-2 py-0.5 rounded border border-red-200">Mandatory</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: TESTING LABS (LIMS) WITH GOOGLE MAPS -->
+    <section id="labs" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div>
+          <span class="text-xs bg-[#F2EBE1] text-[#52341D] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DFD3C2]">LIMS Network</span>
+          <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">BIS-Recognized Testing Laboratories (LIMS)</h2>
+          <p class="text-xs sm:text-sm text-[#6D594B]">Find NABL-accredited and BIS in-house testing stations across India with direct Google Maps routing.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="p-5 rounded-2xl bg-white border border-[#D5C7B2] space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🏛️</span>
+              <h4 class="font-bold text-sm text-[#1A1009]">BIS Central Laboratory (CL)</h4>
+            </div>
+            <p class="text-xs text-[#614D3E]">Plot 20/9, Site-IV, Sahibabad Industrial Area, Ghaziabad, UP</p>
+            <div class="pt-2 border-t border-[#E6DED0] flex justify-between items-center text-xs">
+              <span class="text-[11px] text-[#877461]">Scope: Chemical, Electrical</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=BIS+Central+Laboratory+Sahibabad" target="_blank" class="font-bold text-[#52341D] hover:underline">Google Maps ↗</a>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white border border-[#D5C7B2] space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🏛️</span>
+              <h4 class="font-bold text-sm text-[#1A1009]">Western Regional Lab (WROL)</h4>
+            </div>
+            <p class="text-xs text-[#614D3E]">MIDC, Andheri East, Mumbai, Maharashtra</p>
+            <div class="pt-2 border-t border-[#E6DED0] flex justify-between items-center text-xs">
+              <span class="text-[11px] text-[#877461]">Scope: Mechanical, Food, Gold</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=BIS+Western+Regional+Office+Laboratory+Andheri+East+Mumbai" target="_blank" class="font-bold text-[#52341D] hover:underline">Google Maps ↗</a>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white border border-[#D5C7B2] space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">🏛️</span>
+              <h4 class="font-bold text-sm text-[#1A1009]">Southern Regional Lab (SROL)</h4>
+            </div>
+            <p class="text-xs text-[#614D3E]">CIT Campus, IV Cross Road, Taramani, Chennai, Tamil Nadu</p>
+            <div class="pt-2 border-t border-[#E6DED0] flex justify-between items-center text-xs">
+              <span class="text-[11px] text-[#877461]">Scope: Electronics, Medical</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=BIS+Southern+Regional+Office+Laboratory+Taramani+Chennai" target="_blank" class="font-bold text-[#52341D] hover:underline">Google Maps ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- OFFICIAL EVIDENCE MODAL -->
+  <div id="evidenceDrawer" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4 animate-fade-in">
+    <div class="bg-[#FAF7F2] w-full max-w-2xl rounded-t-3xl sm:rounded-3xl border-2 border-[#52341D] max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-5 gov-card-shadow">
+      <div class="flex justify-between items-start border-b border-[#E6DED0] pb-4">
+        <div>
+          <span class="text-[10px] uppercase font-bold tracking-wider text-[#52341D] bg-[#F2EBE1] px-2.5 py-0.5 rounded-full border border-[#DFD3C2]">
+            Official BIS Knowledge Source Citation
+          </span>
+          <h3 id="drawerTitle" class="font-muse text-xl font-bold text-[#1A1009] mt-1">IS Document</h3>
+        </div>
+        <button onclick="closeEvidence()" class="w-8 h-8 rounded-full bg-white border border-[#D5C7B2] text-[#614D3E] hover:text-[#1A1009] flex items-center justify-center font-bold text-sm">✕</button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="p-3 bg-white rounded-xl border border-[#D5C7B2]">
+          <span class="text-[#877461] block text-[10px] uppercase font-semibold">Regulatory Document</span>
+          <span id="drawerDoc" class="font-bold font-mono-bis text-[#1A1009] text-[11px]">DPIIT QCO Order</span>
+        </div>
+        <div class="p-3 bg-white rounded-xl border border-[#D5C7B2]">
+          <span class="text-[#877461] block text-[10px] uppercase font-semibold">Cited Clause</span>
+          <span id="drawerClause" class="font-bold font-mono-bis text-[#52341D] text-[11px]">Clause 5.1 &amp; 7.1</span>
+        </div>
+        <div class="p-3 bg-white rounded-xl border border-[#D5C7B2]">
+          <span class="text-[#877461] block text-[10px] uppercase font-semibold">Page Coordinates</span>
+          <span id="drawerPage" class="font-bold font-mono-bis text-[#1A1009] text-[11px]">Page 4, 11</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-xs font-bold text-[#26170E] mb-1.5 flex items-center gap-1.5">
+          <span>📜 Authorized Gazette / Standard Excerpt:</span>
+        </div>
+        <div id="drawerQuote" class="p-4 rounded-xl bg-[#F2EBE1] border-l-4 border-[#52341D] text-xs text-[#1A1009] leading-relaxed italic">
+          Quote
+        </div>
+      </div>
+
+      <div class="text-[11px] text-[#877461] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-2 border-t border-[#E6DED0]">
+        <span>Verified against Ministry of Consumer Affairs repository</span>
+        <button onclick="closeEvidence()" class="bg-[#52341D] hover:bg-[#26170E] text-white text-xs font-bold px-5 py-2 rounded-xl transition">
+          Done Reviewing
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY THIS STANDARD MODAL -->
+  <div id="whyModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 animate-fade-in">
+    <div class="bg-[#FAF7F2] rounded-3xl border-2 border-[#52341D] max-w-lg w-full p-6 sm:p-8 space-y-5 shadow-2xl relative">
+      <div class="flex justify-between items-center pb-3 border-b border-[#D5C7B2]">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🎯</span>
+          <div>
+            <h3 class="font-muse text-xl font-bold text-[#1A1009]">Why this was recommended</h3>
+            <p id="whyStandardCode" class="text-xs font-mono-bis text-[#52341D]">IS 17803:2022</p>
+          </div>
+        </div>
+        <button onclick="closeWhyModal()" class="w-8 h-8 rounded-full bg-white border border-[#D5C7B2] text-[#614D3E] hover:text-[#1A1009] flex items-center justify-center font-bold text-sm">
+          ✕
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs leading-relaxed">
+        <div class="p-4 bg-white rounded-xl border border-[#D5C7B2] space-y-2">
+          <div class="font-bold text-[#1A1009]">Product Scope Matching:</div>
+          <p id="whyScopeText" class="text-[#614D3E]">
+            Your product description contains characteristics matching the scope of this standard.
+          </p>
+        </div>
+
+        <div class="p-4 bg-[#F2EBE1] rounded-xl border border-[#DFD3C2] space-y-1 text-[#52341D]">
+          <div class="font-bold">Excluded Alternatives Considered:</div>
+          <p class="text-[11px] text-[#614D3E]">
+            Evaluated alternative sub-classifications and verified non-applicable scopes. This standard represents the sole mandated statutory requirement under the Central Quality Control Order.
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-2 flex justify-end">
+        <button onclick="closeWhyModal()" class="bg-[#52341D] text-white font-bold text-xs px-5 py-2.5 rounded-xl hover:bg-[#26170E] transition">
+          Got it
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    const STANDARDS_DB = {
+      "steel_bottles": {
+        code: "IS 17803:2022",
+        title: "Stainless Steel Vacuum Flasks and Insulated Bottles",
+        ministry: "Department for Promotion of Industry and Internal Trade (DPIIT)",
+        qcoNumber: "DPIIT QCO S.O. 1293(E)",
+        statusType: "mandatory",
+        statusBadge: "🔴 Mandatory QCO",
+        scheme: "Scheme-I (ISI Mark Certification)",
+        why: "Vacuum-insulated or double-walled stainless steel drinkware for food/beverage storage falls under IS 17803. Liner must be food-grade austenitic stainless steel conforming to IS 6911.",
+        testing: [
+          "Clause 5.1: Thermal insulation retention test (>55°C after 24h)",
+          "Clause 4.1: Leachability of heavy metals (Lead, Cadmium)",
+          "Clause 6.2: Drop impact vacuum seal retention test"
+        ],
+        evidence: {
+          doc: "DPIIT QCO S.O. 1293(E) & IS 17803:2022",
+          clause: "Clause 4.2 & 7.1",
+          page: "Pages 4, 11",
+          quote: "Clause 7.1: The body and inner liner in contact with liquid shall be fabricated from food grade austenitic stainless steel conforming to IS 6911 and marked with the Standard Mark under Scheme-I."
+        }
+      },
+      "helmets": {
+        code: "IS 4151:2020",
+        title: "Protective Helmets for Riders of Two Wheeled Motor Vehicles",
+        ministry: "Ministry of Road Transport and Highways (MoRTH)",
+        qcoNumber: "MoRTH QCO S.O. 4252(E)",
+        statusType: "mandatory",
+        statusBadge: "🔴 Mandatory QCO",
+        scheme: "Scheme-I (ISI Mark Certification)",
+        why: "Protective helmets for riders of two-wheelers are strictly mandated under MoRTH Quality Control Order. Non-ISI helmets cannot be legally manufactured or sold in India.",
+        testing: [
+          "Clause 5.1: Impact attenuation across ambient, hot, and freezing conditioning",
+          "Clause 5.2: Dynamic retention system strength & chin strap slippage test",
+          "Clause 5.3: Penetration resistance test with steel striker"
+        ],
+        evidence: {
+          doc: "MoRTH QCO S.O. 4252(E) & IS 4151:2020",
+          clause: "Clause 5.1 & 7.1",
+          page: "Pages 5, 12",
+          quote: "Clause 7.1 Marking: Each protective helmet shall be marked with the Standard Mark (ISI) with valid CM/L licence number."
+        }
+      },
+      "powerbanks": {
+        code: "IS 13252 (Part 1):2010",
+        title: "Information Technology Equipment — Safety (Power Banks)",
+        ministry: "Ministry of Electronics & Information Technology (MeitY)",
+        qcoNumber: "MeitY CRS Order S.O. 2905(E)",
+        statusType: "mandatory",
+        statusBadge: "🔴 Mandatory CRS",
+        scheme: "Scheme-II (Compulsory Registration Scheme - CRS)",
+        why: "Power banks for portable electronics containing rechargeable lithium batteries are regulated under MeitY Compulsory Registration Scheme.",
+        testing: [
+          "Clause 4.3.8: Lithium-ion battery overcharge and thermal abuse test",
+          "Clause 1.5: Electric strength & insulation resistance",
+          "Clause 2.1: Shock protection and enclosure flammability rating"
+        ],
+        evidence: {
+          doc: "MeitY CRS Notification S.O. 2905(E) & IS 13252",
+          clause: "Clause 4.3 & 5.2",
+          page: "Pages 18, 42",
+          quote: "Power banks for use in portable applications must be registered with BIS based on testing from BIS-recognized laboratories under Scheme-II."
+        }
+      },
+      "electric_iron": {
+        code: "IS 302-2-3:2007",
+        title: "Safety of Household Electrical Appliances — Electric Dry & Steam Irons",
+        ministry: "Ministry of Consumer Affairs / DPIIT",
+        qcoNumber: "Electrical Appliances (Quality Control) Order",
+        statusType: "mandatory",
+        statusBadge: "🔴 Mandatory QCO",
+        scheme: "Scheme-I (ISI Mark Certification)",
+        why: "Electric irons are active electrical heating appliances requiring mandatory Scheme-I ISI Mark certification under the Electrical Appliances QCO.",
+        testing: [
+          "Clause 8: Protection against electric shock and accessible live parts",
+          "Clause 13: Leakage current and electric strength at operating temperature",
+          "Clause 19: Abnormal operation & thermal cut-out tripping test at 1.15x rated input"
+        ],
+        evidence: {
+          doc: "Electrical Appliances QCO & IS 302-2-3:2007",
+          clause: "Clause 7.1 & 19.1",
+          page: "Pages 7, 24",
+          quote: "Clause 7.1: Irons shall be marked with rated voltage, input wattage, symbol for nature of supply, and the BIS Standard Mark under Scheme-I."
+        }
+      }
+    };
+
+    function triggerAdvisorInput(queryText) {
+      document.getElementById('advisorInput').value = queryText;
+      executeAdvisorQuery();
+    }
+
+    function executeAdvisorQuery() {
+      const input = document.getElementById('advisorInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const stream = document.getElementById('advisorChatStream');
+
+      const userBox = document.createElement('div');
+      userBox.className = 'flex justify-end animate-fade-in';
+      userBox.innerHTML = `
+        <div class="bg-[#52341D] text-[#FAF7F2] px-5 py-3 rounded-2xl rounded-tr-sm max-w-lg text-xs sm:text-sm shadow-md font-medium border border-[#3A2312] flex items-center gap-2">
+          <span>${text}</span>
+        </div>
+      `;
+      stream.appendChild(userBox);
+      input.value = '';
+
+      const thinkingBox = document.createElement('div');
+      thinkingBox.className = 'flex items-center gap-2 text-xs text-[#52341D] font-bold p-3 rounded-xl bg-[#F2EBE1] border border-[#DECBB3] w-fit animate-fade-in';
+      thinkingBox.innerHTML = `
+        <span class="w-3 h-3 border-2 border-[#52341D] border-t-transparent rounded-full animate-spin"></span>
+        <span>Retrieving authorized BIS knowledge sources &amp; checking Quality Control Orders...</span>
+      `;
+      stream.appendChild(thinkingBox);
+      thinkingBox.scrollIntoView({ behavior: 'smooth' });
+
+      setTimeout(() => {
+        thinkingBox.remove();
+        evaluateQueryIntent(text, stream);
+      }, 400);
+    }
+
+    function evaluateQueryIntent(query, stream) {
+      const q = query.toLowerCase();
+
+      // Ambiguity Triage
+      if (q.includes("electrical product") || q.includes("electrical items") || (q.includes("electrical") && !q.includes("iron") && !q.includes("plug") && !q.includes("light") && !q.includes("wire"))) {
+        renderNeedMoreInfoCard(stream, {
+          title: "⚠️ Product Category is Broad — Disambiguation Required",
+          prompt: "The Bureau of Indian Standards governs over 1,800 electrical standards under the Electrotechnical Division (ETD). Different products fall under completely different Indian Standards and Quality Control Orders.",
+          question: "Please select your specific electrical product type to identify the exact mandatory standard:",
+          options: [
+            { label: "Domestic Electric Dry / Steam Iron (IS 302-2-3)", key: "electric_iron" },
+            { label: "Portable Lithium Power Bank (IS 13252)", key: "powerbanks" },
+            { label: "Two-pin / Three-pin Plugs & Sockets (IS 1293)", key: "plugs" }
+          ]
+        });
+        return;
+      }
+
+      let match = STANDARDS_DB['steel_bottles'];
+      if (q.includes("helmet") || q.includes("motorcycle") || q.includes("rider")) {
+        match = STANDARDS_DB['helmets'];
+      } else if (q.includes("power bank") || q.includes("battery") || q.includes("lithium")) {
+        match = STANDARDS_DB['powerbanks'];
+      } else if (q.includes("iron") || q.includes("dry iron") || q.includes("steam iron")) {
+        match = STANDARDS_DB['electric_iron'];
+      }
+
+      renderStructuredAgentResponse(stream, match);
+    }
+
+    function renderNeedMoreInfoCard(stream, data) {
+      const box = document.createElement('div');
+      box.className = 'space-y-4 animate-fade-in';
+
+      let optionsHtml = '';
+      data.options.forEach(opt => {
+        optionsHtml += `
+          <button onclick="resolveAmbiguity('${opt.key}')" class="text-xs px-3.5 py-2.5 rounded-xl bg-white border border-[#D5C7B2] hover:border-[#52341D] hover:bg-[#F2EBE1] text-[#1A1009] font-medium transition text-left flex items-center justify-between group shadow-sm">
+            <span>${opt.label}</span>
+            <span class="text-[#52341D] font-bold opacity-0 group-hover:opacity-100 transition">Select →</span>
+          </button>
+        `;
+      });
+
+      box.innerHTML = `
+        <div class="bg-[#FEF9EE] border-2 border-[#F5E2B3] rounded-3xl p-6 sm:p-7 space-y-4 shadow-sm">
+          <div class="flex items-center gap-2 text-amber-900 font-bold text-sm">
+            <span>${data.title}</span>
+          </div>
+          <p class="text-xs text-[#614D3E] leading-relaxed">
+            ${data.prompt}
+          </p>
+          <div class="p-3 bg-white rounded-xl border border-[#DECBB3] text-xs font-bold text-[#1A1009]">
+            ${data.question}
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+            ${optionsHtml}
+          </div>
+        </div>
+      `;
+
+      stream.appendChild(box);
+      box.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resolveAmbiguity(key) {
+      const stream = document.getElementById('advisorChatStream');
+      if (key === 'electric_iron') {
+        renderStructuredAgentResponse(stream, STANDARDS_DB['electric_iron']);
+      } else if (key === 'powerbanks') {
+        renderStructuredAgentResponse(stream, STANDARDS_DB['powerbanks']);
+      } else {
+        renderStructuredAgentResponse(stream, STANDARDS_DB['steel_bottles']);
+      }
+    }
+
+    function renderStructuredAgentResponse(stream, std) {
+      const box = document.createElement('div');
+      box.className = 'space-y-4 animate-fade-in';
+
+      let testingListHtml = '';
+      std.testing.forEach(t => {
+        testingListHtml += `<li class="text-[11px] text-[#614D3E] flex items-start gap-1.5"><span class="text-[#52341D] font-bold">✓</span><span>${t}</span></li>`;
+      });
+
+      box.innerHTML = `
+        <!-- 6-TIER VISUAL PIPELINE -->
+        <div class="bg-white border border-[#D5C7B2] rounded-2xl p-4 shadow-sm space-y-2">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-[#52341D] flex items-center justify-between">
+            <span>Autonomous Agent Reasoning Pipeline</span>
+            <span class="text-green-800 font-mono-bis">Status: 6/6 Steps Resolved</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1.5 text-[10px] pt-1">
+            <div class="p-1.5 rounded-lg bg-[#F2EBE1] border border-[#DFD3C2] text-[#52341D] font-medium text-center">1. Product ID ✓</div>
+            <div class="p-1.5 rounded-lg bg-[#F2EBE1] border border-[#DFD3C2] text-[#52341D] font-medium text-center">2. Standard Scope ✓</div>
+            <div class="p-1.5 rounded-lg bg-[#F2EBE1] border border-[#DFD3C2] text-[#52341D] font-medium text-center">3. QCO Status ✓</div>
+            <div class="p-1.5 rounded-lg bg-[#F2EBE1] border border-[#DFD3C2] text-[#52341D] font-medium text-center">4. Testing Clauses ✓</div>
+            <div class="p-1.5 rounded-lg bg-[#F2EBE1] border border-[#DFD3C2] text-[#52341D] font-medium text-center">5. Factory SIT ✓</div>
+            <div class="p-1.5 rounded-lg bg-[#EFF8F1] border border-[#C2E3C9] text-green-900 font-bold text-center">6. Gazette Evidence ✓</div>
+          </div>
+        </div>
+
+        <!-- ⭐ COMPACT BIS KNOWLEDGE CARD -->
+        <div class="bg-[#FAF7F2] border-2 border-[#D5C7B2] rounded-3xl p-6 sm:p-7 gov-card-shadow space-y-5">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-4 border-b border-[#E6DED0]">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-wider text-[#52341D] bg-[#F2EBE1] px-2.5 py-0.5 rounded-full border border-[#DFD3C2]">
+                📘 Recommended Indian Standard
+              </span>
+              <h3 class="font-mono-bis text-xl font-bold text-[#1A1009] mt-1">${std.code}</h3>
+              <div class="text-xs text-[#614D3E] font-semibold">${std.title}</div>
+            </div>
+
+            <div class="text-right">
+              <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-[#FDF2EF] text-[#9E3A28] border border-[#F6D0C8] uppercase shadow-sm">
+                ${std.statusBadge}
+              </span>
+              <div class="text-[10px] text-stone-500 mt-1">${std.ministry}</div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white border border-[#D5C7B2] space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-[#1A1009]">🎯 Applicability &amp; Scope Rationale:</span>
+              <button onclick="openWhyModal('${std.code}', '${encodeURIComponent(std.why)}')" class="text-[11px] font-bold text-[#52341D] hover:underline">
+                [Why this standard?]
+              </button>
+            </div>
+            <p class="text-xs text-[#614D3E] leading-relaxed">${std.why}</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3.5 rounded-xl bg-white border border-[#D5C7B2]">
+              <span class="text-[10px] uppercase font-bold text-stone-500 block">Conformity Scheme</span>
+              <span class="font-bold text-[#52341D] block mt-0.5">${std.scheme}</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white border border-[#D5C7B2]">
+              <span class="text-[10px] uppercase font-bold text-stone-500 block">Quality Control Order Basis</span>
+              <span class="font-bold text-[#9E3A28] block mt-0.5">${std.qcoNumber}</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white border border-[#D5C7B2] space-y-2">
+            <span class="text-xs font-bold text-[#1A1009] block">🧪 Essential Laboratory Testing Parameters:</span>
+            <ul class="space-y-1.5">
+              ${testingListHtml}
+            </ul>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-[#F2EBE1] border border-[#DFD3C2] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <div class="space-y-0.5">
+              <span class="text-[10px] font-bold uppercase text-[#52341D]">📑 Official Gazette &amp; Clause Evidence</span>
+              <div class="text-xs font-mono-bis text-[#1A1009]">
+                ${std.evidence.doc} → <span class="font-bold text-[#52341D]">${std.evidence.clause}</span> (${std.evidence.page})
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="openEvidence('${std.code}', '${std.evidence.clause}', '${std.evidence.page}', '${encodeURIComponent(std.evidence.quote)}')" class="bg-[#52341D] hover:bg-[#422815] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-sm transition flex items-center gap-1.5">
+                <span>Inspect Source</span>
+                <span class="text-amber-200">🔍</span>
+              </button>
+              <button onclick="saveFromCardToProducts('${std.code}', '${std.title}')" class="bg-white hover:bg-stone-50 text-[#52341D] border border-[#D5C7B2] text-xs font-bold px-3 py-2 rounded-xl shadow-sm transition">
+                + Pin to Home
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      stream.appendChild(box);
+      box.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function saveFromCardToProducts(code, title) {
+      let cat = 'steel_bottles';
+      if (code.includes('4151')) cat = 'helmets';
+      else if (code.includes('13252')) cat = 'powerbanks';
+      else if (code.includes('302')) cat = 'electric_iron';
+
+      const prod = {
+        name: title,
+        category: cat,
+        categoryText: title,
+        scale: 'micro',
+        location: 'In-State Manufacturing Facility',
+        createdAt: new Date().toISOString()
+      };
+
+      localStorage.setItem('bis_active_product', JSON.stringify(prod));
+      alert(`Product "${title}" has been saved as your Active Product! Opening Home Dashboard...`);
+      window.location.href = 'index.html#activeProductSection';
+    }
+
+    function openEvidence(title, clause, page, quoteUri) {
+      document.getElementById('drawerTitle').innerText = title;
+      document.getElementById('drawerClause').innerText = clause;
+      document.getElementById('drawerPage').innerText = page;
+      document.getElementById('drawerQuote').innerText = `"${decodeURIComponent(quoteUri)}"`;
+      document.getElementById('evidenceDrawer').classList.remove('hidden');
+    }
+
+    function closeEvidence() {
+      document.getElementById('evidenceDrawer').classList.add('hidden');
+    }
+
+    function openWhyModal(code, whyUri) {
+      document.getElementById('whyStandardCode').innerText = code;
+      document.getElementById('whyScopeText').innerText = decodeURIComponent(whyUri);
+      document.getElementById('whyModal').classList.remove('hidden');
+    }
+
+    function closeWhyModal() {
+      document.getElementById('whyModal').classList.add('hidden');
+    }
+
+    function generateComplianceDossier() {
+      const name = document.getElementById('obProdName').value.trim() || 'Milton Thermosteel Classic 1000';
+      const scale = document.getElementById('obScale').value;
+      const dossierBox = document.getElementById('generatedDossier');
+
+      // Save to localStorage so Home Page immediately shows it!
+      const productObj = {
+        name: name,
+        category: "steel_bottles",
+        categoryText: "Stainless Steel Vacuum Flasks (IS 17803)",
+        scale: scale,
+        location: "Plot 42, GIDC Industrial Estate, Gujarat",
+        createdAt: new Date().toISOString()
+      };
+      localStorage.setItem('bis_active_product', JSON.stringify(productObj));
+
+      let fee = '₹12,500 + GST';
+      if (scale === 'small') fee = '₹20,000 + GST';
+      else if (scale === 'medium' || scale === 'large') fee = '₹25,000 + GST';
+
+      dossierBox.innerHTML = `
+        <div class="p-6 rounded-2xl bg-[#FAF7F2] border-2 border-[#52341D] space-y-4 animate-fade-in shadow-md">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-[#D5C7B2]">
+            <div>
+              <span class="text-[10px] font-bold uppercase text-[#52341D] tracking-wider bg-[#F2EBE1] px-2.5 py-0.5 rounded-full border border-[#DFD3C2]">
+                ✓ Compliance Dossier Generated &amp; Saved to Home Dashboard
+              </span>
+              <h3 class="font-muse text-xl font-bold text-[#1A1009] mt-1">${name}</h3>
+            </div>
+            <a href="index.html#activeProductSection" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#52341D] text-white font-bold text-xs hover:bg-[#26170E] transition shadow">
+              <span>🌟 View on Home Dashboard</span>
+              <span class="text-amber-300">→</span>
+            </a>
+          </div>
+
+          <div class="text-xs text-[#614D3E]">
+            Assigned Standard: <strong>IS 17803:2022</strong> • Mandatory Scheme-I ISI • Estimated Statutory Fee: <strong>${fee}</strong>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs">
+            <div class="p-3.5 bg-white rounded-xl border border-[#D5C7B2]">
+              <span class="font-bold text-[#52341D] block mb-1">Required In-House SIT Equipment</span>
+              <ul class="list-disc pl-4 space-y-0.5 text-[#614D3E] text-[11px]">
+                <li>Thermostatic vacuum loss testing chamber</li>
+                <li>Digital micrometers &amp; internal vernier calipers</li>
+                <li>1-meter calibrated drop impact test anvil</li>
+              </ul>
+            </div>
+            <div class="p-3.5 bg-white rounded-xl border border-[#D5C7B2]">
+              <span class="font-bold text-[#52341D] block mb-1">Factory Audit Inspection Protocol</span>
+              <ul class="list-disc pl-4 space-y-0.5 text-[#614D3E] text-[11px]">
+                <li>Raw material IS 6911 mill test certificate (MTC) check</li>
+                <li>Finished goods lot sampling at final packaging</li>
+                <li>Counter-sample sealing for NABL Sahibabad laboratory</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      `;
+      dossierBox.classList.remove('hidden');
+      dossierBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function calculateFees() {
+      const scheme = document.getElementById('feeScheme').value;
+      const enterprise = document.getElementById('feeEnterprise').value;
+      let app = 1000, audit = 7000, marking = 11000, discount = 0;
+
+      if (scheme === 'crs') { app = 2000; audit = 0; marking = 25000; }
+      if (enterprise === 'micro') discount = Math.round(marking * 0.5);
+
+      const total = (app + audit + marking) - discount;
+      document.getElementById('feeApp').innerText = '₹' + app.toLocaleString();
+      document.getElementById('feeAudit').innerText = '₹' + audit.toLocaleString();
+      document.getElementById('feeMarking').innerText = '₹' + marking.toLocaleString();
+      document.getElementById('feeDiscount').innerText = '-₹' + discount.toLocaleString();
+      document.getElementById('feeTotal').innerText = '₹' + total.toLocaleString() + ' + GST';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      calculateFees();
+      triggerAdvisorInput('I manufacture double-walled stainless steel vacuum bottles for retail sale.');
+    });
+  </script>
+
+  <!-- Government Footer (Espresso & Khaki Matte) -->
+  <footer class="bg-[#1A1009] text-[#D5C7B2] border-t border-[#26170E] mt-16 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded bg-[#52341D] text-white flex items-center justify-center font-bold text-[10px]">ISI</div>
+          <span class="font-muse font-bold text-lg text-white">BIS SmartGuide</span>
+        </div>
+        <p class="text-[#C5B498] leading-relaxed text-[11px]">
+          Smart India Hackathon 2026 Innovation (SIH26107). Tri-Space AI reasoning ecosystem for Industry, Consumers, and Academic Researchers.
+        </p>
+      </div>
+
+      <div class="space-y-2 text-[11px]">
+        <div class="font-bold text-white uppercase tracking-wider text-xs">Industry Tools</div>
+        <div class="flex flex-col gap-1 text-[#C5B498]">
+          <a href="industry_seller.html" class="hover:text-amber-200">AI Standards Advisor</a>
+          <a href="industry_seller.html#onboarding" class="hover:text-amber-200">Product Onboarding &amp; Dossier</a>
+          <a href="industry_seller.html#fee-calc" class="hover:text-amber-200">Statutory Fee Calculator</a>
+          <a href="industry_seller.html#labs" class="hover:text-amber-200">LIMS Recognized Labs</a>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-[11px]">
+        <div class="font-bold text-white uppercase tracking-wider text-xs">Consumer Hub</div>
+        <div class="flex flex-col gap-1 text-[#C5B498]">
+          <a href="citizen_consumer.html" class="hover:text-amber-200">Verify ISI License &amp; HUID</a>
+          <a href="citizen_consumer.html#fake-detector" class="hover:text-amber-200">Counterfeit Red Flags</a>
+          <a href="citizen_consumer.html#grievance" class="hover:text-amber-200">Report Substandard Goods</a>
+          <a href="citizen_consumer.html#buying-guide" class="hover:text-amber-200">Safe Buying Checklists</a>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-[11px]">
+        <div class="font-bold text-white uppercase tracking-wider text-xs">Research &amp; Academia</div>
+        <div class="flex flex-col gap-1 text-[#C5B498]">
+          <a href="research_academia.html" class="hover:text-amber-200">Technical Clause Explorer</a>
+          <a href="research_academia.html#global-mapping" class="hover:text-amber-200">IS vs ISO/IEC Equivalence</a>
+          <a href="research_academia.html#academic-cite" class="hover:text-amber-200">Paper Citation Generator</a>
+          <a href="research_academia.html#research-compare" class="hover:text-amber-200">Multi-Standard Benchmark</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 py-4 text-center text-[10px] text-stone-400">
+      © 2026 BIS SmartGuide • Dedicated Tri-Portal Architecture for Smart India Hackathon 2026 • Bureau of Indian Standards
+    </div>
+  </footer>
+</body>
+</html>

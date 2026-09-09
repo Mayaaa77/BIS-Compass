@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citizen & Consumer Protection Portal — BIS SmartGuide</title>
+<!-- Tailwind CDN -->
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@500;600;700;800;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* 5-Color Professional Matte Palette: Linen, Khaki, Camel, Cocoa, Espresso */
+    --espresso-deep: #1A1009;
+    --espresso-warm: #26170E;
+    --cocoa-primary: #52341D;
+    --cocoa-hover: #422815;
+    --cocoa-mid: #6E492C;
+    --camel: #B58448;
+    --camel-dark: #966932;
+    --camel-light: #F6EFE6;
+    --camel-border: #DECBB3;
+    
+    --cocoa-tint: #F2EBE1;
+    --khaki-tint-border: #DFD3C2;
+    
+    --linen-canvas: #F5F2EA;
+    --linen-surface: #FAF7F2;
+    --linen-card: #FFFFFF;
+    --khaki-raised: #EBE3D4;
+    --khaki-border: #D5C7B2;
+    --khaki-border-subtle: #E2D7C5;
+    --linen-border-subtle: #E6DED0;
+    
+    --text-espresso: #1A1009;
+    --text-cocoa-muted: #614D3E;
+    --text-khaki-subtle: #877461;
+
+    --status-mandatory: #9E3A28;
+    --status-mandatory-bg: #FDF2EF;
+    --status-voluntary: #3E6B34;
+    --status-voluntary-bg: #F0F6EE;
+  }
+
+  * { box-sizing: border-box; }
+  
+  /* Matte finish background with fine architectural micro-grid */
+  body {
+    font-family: 'Raleway', sans-serif;
+    background-color: var(--linen-canvas);
+    background-image: radial-gradient(#D5C7B2 0.7px, transparent 0.7px);
+    background-size: 24px 24px;
+    color: var(--text-espresso);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Website Title Font: MUSE (MuseoModerno) */
+  .font-muse {
+    font-family: 'MuseoModerno', 'Muse', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.015em;
+  }
+
+  .font-raleway { font-family: 'Raleway', sans-serif; }
+  .font-serif-gov { font-family: 'Raleway', sans-serif; }
+  .font-mono-bis { font-family: 'JetBrains Mono', monospace; }
+
+  /* Tricolor Top Strip - Matte Flat Precision */
+  .tricolor-bar {
+    height: 3px;
+    background: linear-gradient(90deg, #D97724 0%, #D97724 33.3%, #F5F2EA 33.3%, #F5F2EA 66.6%, #52341D 66.6%, #52341D 100%);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .matte-header {
+    background-color: #FAF7F2;
+    border-bottom: 1px solid var(--khaki-border);
+    box-shadow: 0 1px 3px rgba(26, 16, 9, 0.03);
+  }
+
+  .gov-card-shadow {
+    box-shadow: 0 1px 3px rgba(26, 16, 9, 0.03), 0 2px 6px -1px rgba(26, 16, 9, 0.02);
+    border: 1px solid var(--khaki-border);
+  }
+
+  .gov-card-hover {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gov-card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px -2px rgba(26, 16, 9, 0.06);
+    border-color: #B5A288;
+  }
+
+  .space-pill-active {
+    background-color: #52341D;
+    color: #FAF7F2;
+    border: 1px solid #3A2312;
+    box-shadow: 0 1px 3px rgba(26, 16, 9, 0.15);
+  }
+  .space-pill-inactive {
+    background-color: transparent;
+    color: #DFD3C2;
+    border: 1px solid transparent;
+  }
+  .space-pill-inactive:hover {
+    color: #FAF7F2;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  input[type="text"], input[type="number"], select, textarea {
+    background-color: #FAF7F2;
+    border: 1px solid var(--khaki-border);
+    color: var(--text-espresso);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+    border-color: var(--cocoa-primary);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--cocoa-primary);
+  }
+</style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Tricolor Bar -->
+  <div class="tricolor-bar sticky top-0 z-50"></div>
+
+  <!-- Government Official Top Header -->
+  <div class="bg-[#1A1009] text-amber-100/90 text-xs py-2 px-4 sm:px-8 flex flex-col lg:flex-row justify-between items-center gap-2 z-40 border-b border-[#26170E]">
+    <div class="flex items-center gap-3">
+      <span class="flex items-center gap-1.5">
+        <span class="text-sm">🇮🇳</span> 
+        <span class="font-medium tracking-wide text-white">Government of India</span>
+      </span>
+      <span class="text-white/25">|</span>
+      <span class="text-stone-300 font-normal">Ministry of Consumer Affairs, Food &amp; Public Distribution</span>
+    </div>
+
+    <!-- 3 SEPARATE PAGES SWITCHER (HOME VS. INDUSTRY VS. CONSUMER VS. RESEARCH) -->
+    <div class="flex flex-wrap items-center gap-2">
+      <div class="bg-[#26170E] p-1 rounded-xl border border-[#52341D] flex flex-wrap items-center gap-1">
+        
+        <!-- Home Page -->
+        <a href="index.html" class="space-pill-inactive px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Home</span>
+        </a>
+
+        <!-- Page 1: Industry & Seller -->
+        <a href="industry_seller.html" class="space-pill-inactive px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <span>Industry &amp; Seller</span>
+        </a>
+
+        <!-- Page 2: Citizen & Consumer -->
+        <a href="citizen_consumer.html" class="space-pill-active px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span>Citizen &amp; Consumer</span>
+        </a>
+
+        <!-- Page 3: Research & Academia -->
+        <a href="research_academia.html" class="space-pill-inactive px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <span>🎓 Research &amp; Academia</span>
+        </a>
+
+      </div>
+
+      <button onclick="alert('Language changed: English / हिन्दी')" class="bg-white/10 hover:bg-white/20 text-white px-2.5 py-1 rounded-lg transition border border-white/20 text-[11px]">
+        English / हिन्दी
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <header class="matte-header sticky top-0 z-30 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex justify-between items-center">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3 cursor-pointer">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#52341D] to-[#1A1009] flex items-center justify-center text-white font-bold text-xl shadow-sm border border-[#B58448]/40">
+          <svg class="w-6 h-6 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3.5 6.5l-2.1 5.6-5.6 2.1 2.1-5.6 5.6-2.1z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-muse font-extrabold text-2xl tracking-tight text-[#1A1009]">BIS SmartGuide</h1>
+            <span class="bg-[#F2EBE1] text-[#52341D] text-[11px] font-bold px-2 py-0.5 rounded-full border border-[#52341D]/20">
+              Consumer Space
+            </span>
+          </div>
+          <p class="text-xs text-[#614D3E] font-medium">Citizen Protection, Verification & Grievance Hub</p>
+        </div>
+      </a>
+
+      <!-- Page Quick Nav Links -->
+      <div class="hidden lg:flex items-center gap-2 text-xs font-semibold">
+        <a href="index.html" class="px-3 py-2 rounded-lg text-[#614D3E] hover:text-[#52341D] hover:bg-[#F2EBE1] transition">Portal Home</a>
+        <a href="industry_seller.html" class="px-3 py-2 rounded-lg text-[#614D3E] hover:text-[#52341D] hover:bg-[#F2EBE1] transition">🏢 Industry &amp; Sellers</a>
+        <a href="citizen_consumer.html" class="px-3 py-2 rounded-lg bg-[#F2EBE1] text-[#52341D] transition">🛡️ Citizens &amp; Consumers</a>
+        <a href="research_academia.html" class="px-3 py-2 rounded-lg text-[#614D3E] hover:text-[#52341D] hover:bg-[#F2EBE1] transition">🔬 Research &amp; Academia</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Gazette Ticker -->
+  <div class="bg-[#EBE3D4] border-b border-[#D5C7B2] px-4 py-2 text-xs text-[#26170E] flex items-center gap-3 overflow-hidden">
+    <span class="bg-[#52341D] text-white font-bold text-[10px] uppercase px-2 py-0.5 rounded shrink-0 flex items-center gap-1">
+      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/></svg>
+      Gazette Updates
+    </span>
+    <div class="whitespace-nowrap overflow-x-auto text-[12px]">
+      <span>📢 <strong>Standards Intelligence:</strong> 24,200+ Indian Standards indexed with ISO/IEC cross-references, Sectional Committees, and clause parameters.</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-8 space-y-10">
+
+    <!-- 🚨 STRATEGIC ACCURACY BANNER (NO OVERCLAIMING) -->
+    <div class="p-3.5 rounded-2xl bg-[#F2EBE1] border border-[#DECBB3] flex items-center justify-between text-xs text-[#52341D] gap-3">
+      <div class="flex items-center gap-2.5">
+        <span class="text-base">⚖️</span>
+        <span>
+          <strong>Statutory Governance Note:</strong> BIS SmartGuide retrieves and reasons over authorized BIS knowledge sources (24,200+ Indian Standards, Gazette QCOs, LIMS labs, and SIT guidelines) to provide evidence-backed guidance.
+        </span>
+      </div>
+      <a href="index.html" class="hidden sm:inline-flex items-center gap-1 font-mono-bis text-[10px] bg-white px-2.5 py-1 rounded-lg border border-[#DFD3C2] text-[#52341D] font-bold hover:bg-[#FAF7F2] transition">
+        <span>Portal Home</span> ↗
+      </a>
+    </div>
+
+    <!-- DEDICATED CONSUMER HERO -->
+    <section class="bg-[#FAF7F2] p-6 sm:p-10 rounded-3xl border border-[#D5C7B2] gov-card-shadow">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-7 space-y-5">
+          <div class="inline-flex items-center gap-2 bg-[#F6EFE6] px-3.5 py-1.5 rounded-full border border-[#DECBB3] text-xs text-[#B58448] font-bold">
+            <span>🛡️ Dedicated Hub for Citizen Protection &amp; Safe Buying</span>
+          </div>
+
+          <div class="space-y-3">
+            <h1 class="font-muse text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1A1009] leading-tight">
+              Citizen Verification &amp; Anti-Counterfeit Hub
+            </h1>
+            <p class="text-sm text-[#614D3E] leading-relaxed">
+              Verify genuine <strong>ISI CM/L licenses</strong>, check <strong>6-digit Gold Hallmarking HUID codes</strong>, spot fake markings, and file formal complaints for substandard goods directly under the Consumer Protection Act, 2019.
+            </p>
+          </div>
+
+          <!-- Quick Navigation Anchor Pills -->
+          <div class="flex flex-wrap gap-2 pt-2 text-xs font-bold">
+            <a href="#verify" class="px-3 py-2 rounded-xl bg-[#52341D] text-white hover:bg-[#422815] shadow-sm transition">Verify ISI &amp; HUID</a>
+            <a href="#fake-detector" class="px-3 py-2 rounded-xl bg-[#FAF7F2] text-[#52341D] border border-[#D5C7B2] hover:bg-[#F2EBE1] transition">Spot Counterfeits</a>
+            <a href="#grievance" class="px-3 py-2 rounded-xl bg-[#FAF7F2] text-[#52341D] border border-[#D5C7B2] hover:bg-[#F2EBE1] transition">🚨 Report Substandard Goods</a>
+            <a href="#buying-guide" class="px-3 py-2 rounded-xl bg-[#FAF7F2] text-[#52341D] border border-[#D5C7B2] hover:bg-[#F2EBE1] transition">Safe Buying Checklists</a>
+          </div>
+        </div>
+
+        <!-- Relatable Consumer Hallmark & Inspection Photo -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative rounded-2xl overflow-hidden border border-[#D5C7B2] shadow-sm bg-white group">
+            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=80" alt="Gold Jewelry Hallmarking Inspection" class="w-full h-72 object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
+              <span class="text-[10px] uppercase font-bold bg-[#B58448] px-2.5 py-0.5 rounded w-fit mb-1">IS 1417 Hallmark Assay</span>
+              <h4 class="font-bold text-sm">Genuine 6-Digit HUID Verification</h4>
+              <p class="text-[11px] text-stone-200">Certified by Bureau of Indian Standards Assaying Centres</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 1: VERIFY ISI CM/L & GOLD HUID ENGINE -->
+    <section id="verify" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div>
+          <span class="text-xs bg-[#F6EFE6] text-[#B58448] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DECBB3]">National Database Lookup</span>
+          <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">Verify Product ISI Licence &amp; Gold HUID</h2>
+          <p class="text-xs sm:text-sm text-[#614D3E]">Enter the 7 to 10-digit ISI CM/L license number or 6-digit Hallmark Unique Identification (HUID) code stamped on jewelry.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- CM/L Verifier -->
+          <div class="p-6 rounded-2xl bg-white border border-[#D5C7B2] space-y-4">
+            <div class="flex items-center gap-2">
+              <span class="w-8 h-8 rounded-lg bg-[#F2EBE1] text-[#52341D] flex items-center justify-center font-bold text-xs">ISI</span>
+              <h3 class="font-bold text-sm text-[#1A1009]">Verify ISI Licence (CM/L Number)</h3>
+            </div>
+            <p class="text-xs text-[#614D3E]">Found printed directly underneath the ISI mark on packaged water, cylinders, helmets, cables.</p>
+            <div class="flex gap-2">
+              <input type="text" id="cmlInput" value="8400192710" placeholder="e.g. 8400192710" class="flex-1 text-xs px-4 py-2.5 border border-[#D5C7B2] rounded-xl outline-none bg-[#FAF7F2] font-mono-bis">
+              <button onclick="verifyCML()" class="bg-[#52341D] text-white text-xs font-bold px-4 py-2.5 rounded-xl hover:bg-[#422815] transition">Check Licence</button>
+            </div>
+            <div id="cmlOutput" class="hidden p-3 rounded-xl text-xs"></div>
+          </div>
+
+          <!-- HUID Verifier -->
+          <div class="p-6 rounded-2xl bg-white border border-[#D5C7B2] space-y-4">
+            <div class="flex items-center gap-2">
+              <span class="w-8 h-8 rounded-lg bg-[#F6EFE6] text-[#B58448] flex items-center justify-center font-bold text-xs">22K</span>
+              <h3 class="font-bold text-sm text-[#1A1009]">Verify Gold &amp; Silver HUID (6-Digit)</h3>
+            </div>
+            <p class="text-xs text-[#614D3E]">Laser-engraved 6-character alphanumeric code on genuine hallmarked jewelry.</p>
+            <div class="flex gap-2">
+              <input type="text" id="huidInput" value="H98K2L" placeholder="e.g. H98K2L" class="flex-1 text-xs px-4 py-2.5 border border-[#D5C7B2] rounded-xl outline-none bg-[#FAF7F2] font-mono-bis uppercase">
+              <button onclick="verifyHUID()" class="bg-[#B58448] text-white text-xs font-bold px-4 py-2.5 rounded-xl hover:bg-[#966932] transition">Check Hallmark</button>
+            </div>
+            <div id="huidOutput" class="hidden p-3 rounded-xl text-xs"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: SPOT FAKE & COUNTERFEIT MARKS -->
+    <section id="fake-detector" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div>
+          <span class="text-xs bg-[#F6EFE6] text-[#B58448] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DECBB3]">Visual Detection</span>
+          <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">Spot Fake &amp; Counterfeit Marks</h2>
+          <p class="text-xs sm:text-sm text-[#6D594B]">How to distinguish a genuine BIS certification mark from counterfeit knock-offs.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-5 rounded-2xl bg-white border border-emerald-300 space-y-3">
+            <div class="flex items-center gap-2 text-emerald-800 font-bold text-sm">
+              <span>✅</span> <span>GENUINE ISI MARK CHECKLIST</span>
+            </div>
+            <ul class="text-xs text-[#614D3E] space-y-1.5 list-disc list-inside">
+              <li>Includes standard IS Code printed at the <strong>TOP</strong> (e.g. <code>IS 17803</code>).</li>
+              <li>Includes valid 7 to 10-digit <strong>CM/L Licence Number</strong> at the <strong>BOTTOM</strong>.</li>
+              <li>Precise geometric proportions of the central "ISI" monogram.</li>
+            </ul>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white border border-red-300 space-y-3">
+            <div class="flex items-center gap-2 text-red-800 font-bold text-sm">
+              <span>❌</span> <span>FAKE MARK RED FLAGS</span>
+            </div>
+            <ul class="text-xs text-[#614D3E] space-y-1.5 list-disc list-inside">
+              <li>Missing CM/L licence number below the logo.</li>
+              <li>Generic phrases like <em>"As per ISI Standards"</em> or <em>"ISI Tested"</em> without a licence.</li>
+              <li>Distorted font geometry or blurry low-resolution packaging sticker.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: REPORT SUBSTANDARD OR FAKE GOODS -->
+    <section id="grievance" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div>
+          <span class="text-xs bg-[#FDF2EF] text-[#9E3A28] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#F6D0C8]">Enforcement Redressal</span>
+          <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">Report Substandard or Fake Goods</h2>
+          <p class="text-xs sm:text-sm text-[#6D594B]">Found a shop selling counterfeit goods or expired ISI licences? File a direct consumer grievance.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-bold text-[#26170E]">Retailer / Shop / E-Commerce Name</label>
+            <input type="text" id="grvShop" placeholder="e.g. Metro Appliances, Sector 18, Noida" class="w-full text-xs px-4 py-2.5 border border-[#D5C7B2] rounded-xl outline-none bg-white mt-1">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-[#26170E]">Product Category</label>
+            <select class="w-full text-xs px-4 py-2.5 border border-[#D5C7B2] rounded-xl outline-none bg-white mt-1">
+              <option>Helmet (Non-ISI / Substandard)</option>
+              <option>Gold Jewelry (Missing HUID)</option>
+              <option>Packaged Drinking Water</option>
+              <option>Electrical Wire / Plugs</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-[#26170E]">Violation Details &amp; Batch No.</label>
+          <textarea id="grvDetails" rows="3" placeholder="Describe the defect, missing mark, or price discrepancy..." class="w-full text-xs p-3 border border-[#D5C7B2] rounded-xl outline-none bg-white mt-1"></textarea>
+        </div>
+
+        <button onclick="submitGrievance()" class="bg-[#52341D] hover:bg-[#26170E] text-white font-bold text-xs px-6 py-3 rounded-xl transition">
+          Submit Formal Grievance to BIS Enforcement Wing
+        </button>
+
+        <div id="grvSuccessBox" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900 space-y-1">
+          <div class="font-bold">✅ Grievance Registered Successfully!</div>
+          <div>Docket ID: <span id="grvId" class="font-mono-bis font-bold">BIS-GRV-2026-9481</span></div>
+          <div class="text-[11px] text-emerald-700">Forwarded to the Regional Enforcement Officer. You will receive SMS updates.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SAFE BUYING CHECKLISTS -->
+    <section id="buying-guide" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div>
+          <span class="text-xs bg-[#F2EBE1] text-[#52341D] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DFD3C2]">Consumer Awareness</span>
+          <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">Safe Buying Checklists for Consumers</h2>
+          <p class="text-xs sm:text-sm text-[#6D594B]">Mandatory hallmarks and certification marks to inspect before you pay.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 text-xs">
+          <div class="p-4 rounded-xl bg-white border border-[#D5C7B2] space-y-2">
+            <span class="font-bold text-[#52341D] block">💧 Packaged Drinking Water</span>
+            <p class="text-[#614D3E]">Always look for <strong>IS 14543</strong> or <strong>IS 13428</strong> with a valid CM/L code. If the code is missing, it is illegal borewell water.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-white border border-[#D5C7B2] space-y-2">
+            <span class="font-bold text-[#B58448] block">💍 Gold &amp; Bullion Jewelry</span>
+            <p class="text-[#614D3E]">Look for three stamps: BIS Triangle Logo, Purity mark (e.g. 22K916), and the laser 6-digit HUID code.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-white border border-[#D5C7B2] space-y-2">
+            <span class="font-bold text-[#52341D] block">🪖 Two-Wheeler Helmets</span>
+            <p class="text-[#614D3E]">Must carry <strong>IS 4151</strong> with CM/L number. Non-ISI helmets fail impact attenuation tests and are legally banned.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    function verifyCML() {
+      const val = document.getElementById('cmlInput').value.trim();
+      const out = document.getElementById('cmlOutput');
+      out.classList.remove('hidden');
+      if (val === '8400192710') {
+        out.className = 'p-4 rounded-xl text-xs bg-[#F0F6EE] text-[#24421E] border border-[#C5DCBF]';
+        out.innerHTML = `✅ <strong>VALID LICENCE:</strong> Milton Houseware Pvt Ltd • IS 17803:2022 (Valid through Mar-2027)`;
+      } else {
+        out.className = 'p-4 rounded-xl text-xs bg-[#FDF2EF] text-[#9E3A28] border border-[#F6D0C8]';
+        out.innerHTML = `❌ <strong>NO LICENCE FOUND:</strong> This CM/L number is unverified and potentially counterfeit.`;
+      }
+    }
+
+    function verifyHUID() {
+      const val = document.getElementById('huidInput').value.trim().toUpperCase();
+      const out = document.getElementById('huidOutput');
+      out.classList.remove('hidden');
+      if (val === 'H98K2L') {
+        out.className = 'p-4 rounded-xl text-xs bg-[#F6EFE6] text-[#966932] border border-[#DECBB3]';
+        out.innerHTML = `✅ <strong>GENUINE HUID:</strong> Tanishq Jewellers • 22K916 Gold (IS 1417:2016)`;
+      } else {
+        out.className = 'p-4 rounded-xl text-xs bg-[#FDF2EF] text-[#9E3A28] border border-[#F6D0C8]';
+        out.innerHTML = `❌ <strong>UNVERIFIED HUID CODE:</strong> No hallmark record matches "${val}".`;
+      }
+    }
+
+    function submitGrievance() {
+      const shop = document.getElementById('grvShop').value.trim();
+      const details = document.getElementById('grvDetails').value.trim();
+      if (!shop || !details) { alert("Please provide shop name and violation details."); return; }
+      document.getElementById('grvId').innerText = "BIS-GRV-2026-" + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('grvSuccessBox').classList.remove('hidden');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      verifyCML();
+      verifyHUID();
+    });
+  </script>
+
+  <!-- Government Footer (Espresso & Khaki Matte) -->
+  <footer class="bg-[#1A1009] text-[#D5C7B2] border-t border-[#26170E] mt-16 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded bg-[#52341D] text-white flex items-center justify-center font-bold text-[10px]">ISI</div>
+          <span class="font-muse font-bold text-lg text-white">BIS SmartGuide</span>
+        </div>
+        <p class="text-[#C5B498] leading-relaxed text-[11px]">
+          Smart India Hackathon 2026 Innovation (SIH26107). Tri-Space AI reasoning ecosystem for Industry, Consumers, and Academic Researchers.
+        </p>
+      </div>
+
+      <div class="space-y-2 text-[11px]">
+        <div class="font-bold text-white uppercase tracking-wider text-xs">Industry Tools</div>
+        <div class="flex flex-col gap-1 text-[#C5B498]">
+          <a href="industry_seller.html" class="hover:text-amber-200">AI Standards Advisor</a>
+          <a href="industry_seller.html#onboarding" class="hover:text-amber-200">Product Onboarding &amp; Dossier</a>
+          <a href="industry_seller.html#fee-calc" class="hover:text-amber-200">Statutory Fee Calculator</a>
+          <a href="industry_seller.html#labs" class="hover:text-amber-200">LIMS Recognized Labs</a>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-[11px]">
+        <div class="font-bold text-white uppercase tracking-wider text-xs">Consumer Hub</div>
+        <div class="flex flex-col gap-1 text-[#C5B498]">
+          <a href="citizen_consumer.html" class="hover:text-amber-200">Verify ISI License &amp; HUID</a>
+          <a href="citizen_consumer.html#fake-detector" class="hover:text-amber-200">Counterfeit Red Flags</a>
+          <a href="citizen_consumer.html#grievance" class="hover:text-amber-200">Report Substandard Goods</a>
+          <a href="citizen_consumer.html#buying-guide" class="hover:text-amber-200">Safe Buying Checklists</a>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-[11px]">
+        <div class="font-bold text-white uppercase tracking-wider text-xs">Research &amp; Academia</div>
+        <div class="flex flex-col gap-1 text-[#C5B498]">
+          <a href="research_academia.html" class="hover:text-amber-200">Technical Clause Explorer</a>
+          <a href="research_academia.html#global-mapping" class="hover:text-amber-200">IS vs ISO/IEC Equivalence</a>
+          <a href="research_academia.html#academic-cite" class="hover:text-amber-200">Paper Citation Generator</a>
+          <a href="research_academia.html#research-compare" class="hover:text-amber-200">Multi-Standard Benchmark</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 py-4 text-center text-[10px] text-stone-400">
+      © 2026 BIS SmartGuide • Dedicated Tri-Portal Architecture for Smart India Hackathon 2026 • Bureau of Indian Standards
+    </div>
+  </footer>
+</body>
+</html>

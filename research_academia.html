@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research & Academia Standards Portal — BIS SmartGuide</title>
+<!-- Tailwind CDN -->
+<script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@500;600;700;800;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* 5-Color Professional Matte Palette: Linen, Khaki, Camel, Cocoa, Espresso */
+    --espresso-deep: #1A1009;
+    --espresso-warm: #26170E;
+    --cocoa-primary: #52341D;
+    --cocoa-hover: #422815;
+    --cocoa-mid: #6E492C;
+    --camel: #B58448;
+    --camel-dark: #966932;
+    --camel-light: #F6EFE6;
+    --camel-border: #DECBB3;
+    
+    --cocoa-tint: #F2EBE1;
+    --khaki-tint-border: #DFD3C2;
+    
+    --linen-canvas: #F5F2EA;
+    --linen-surface: #FAF7F2;
+    --linen-card: #FFFFFF;
+    --khaki-raised: #EBE3D4;
+    --khaki-border: #D5C7B2;
+    --khaki-border-subtle: #E2D7C5;
+    --linen-border-subtle: #E6DED0;
+    
+    --text-espresso: #1A1009;
+    --text-cocoa-muted: #614D3E;
+    --text-khaki-subtle: #877461;
+
+    --status-mandatory: #9E3A28;
+    --status-mandatory-bg: #FDF2EF;
+    --status-voluntary: #3E6B34;
+    --status-voluntary-bg: #F0F6EE;
+  }
+
+  * { box-sizing: border-box; }
+  
+  /* Matte finish background with fine architectural micro-grid */
+  body {
+    font-family: 'Raleway', sans-serif;
+    background-color: var(--linen-canvas);
+    background-image: radial-gradient(#D5C7B2 0.7px, transparent 0.7px);
+    background-size: 24px 24px;
+    color: var(--text-espresso);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Website Title Font: MUSE (MuseoModerno) */
+  .font-muse {
+    font-family: 'MuseoModerno', 'Muse', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.015em;
+  }
+
+  .font-raleway { font-family: 'Raleway', sans-serif; }
+  .font-serif-gov { font-family: 'Raleway', sans-serif; }
+  .font-mono-bis { font-family: 'JetBrains Mono', monospace; }
+
+  /* Tricolor Top Strip - Matte Flat Precision */
+  .tricolor-bar {
+    height: 3px;
+    background: linear-gradient(90deg, #D97724 0%, #D97724 33.3%, #F5F2EA 33.3%, #F5F2EA 66.6%, #52341D 66.6%, #52341D 100%);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .matte-header {
+    background-color: #FAF7F2;
+    border-bottom: 1px solid var(--khaki-border);
+    box-shadow: 0 1px 3px rgba(26, 16, 9, 0.03);
+  }
+
+  .gov-card-shadow {
+    box-shadow: 0 1px 3px rgba(26, 16, 9, 0.03), 0 2px 6px -1px rgba(26, 16, 9, 0.02);
+    border: 1px solid var(--khaki-border);
+  }
+
+  .gov-card-hover {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gov-card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px -2px rgba(26, 16, 9, 0.06);
+    border-color: #B5A288;
+  }
+
+  .space-pill-active {
+    background-color: #52341D;
+    color: #FAF7F2;
+    border: 1px solid #3A2312;
+    box-shadow: 0 1px 3px rgba(26, 16, 9, 0.15);
+  }
+  .space-pill-inactive {
+    background-color: transparent;
+    color: #DFD3C2;
+    border: 1px solid transparent;
+  }
+  .space-pill-inactive:hover {
+    color: #FAF7F2;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  input[type="text"], input[type="number"], select, textarea {
+    background-color: #FAF7F2;
+    border: 1px solid var(--khaki-border);
+    color: var(--text-espresso);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+    border-color: var(--cocoa-primary);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--cocoa-primary);
+  }
+</style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Tricolor Bar -->
+  <div class="tricolor-bar sticky top-0 z-50"></div>
+
+  <!-- Government Official Top Header -->
+  <div class="bg-[#1A1009] text-amber-100/90 text-xs py-2 px-4 sm:px-8 flex flex-col lg:flex-row justify-between items-center gap-2 z-40 border-b border-[#26170E]">
+    <div class="flex items-center gap-3">
+      <span class="flex items-center gap-1.5">
+        <span class="text-sm">🇮🇳</span> 
+        <span class="font-medium tracking-wide text-white">Government of India</span>
+      </span>
+      <span class="text-white/25">|</span>
+      <span class="text-stone-300 font-normal">Ministry of Consumer Affairs, Food &amp; Public Distribution</span>
+    </div>
+
+    <!-- 3 SEPARATE PAGES SWITCHER (HOME VS. INDUSTRY VS. CONSUMER VS. RESEARCH) -->
+    <div class="flex flex-wrap items-center gap-2">
+      <div class="bg-[#26170E] p-1 rounded-xl border border-[#52341D] flex flex-wrap items-center gap-1">
+        
+        <!-- Home Page -->
+        <a href="index.html" class="space-pill-inactive px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span>Home</span>
+        </a>
+
+        <!-- Page 1: Industry & Seller -->
+        <a href="industry_seller.html" class="space-pill-inactive px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <span>Industry &amp; Seller</span>
+        </a>
+
+        <!-- Page 2: Citizen & Consumer -->
+        <a href="citizen_consumer.html" class="space-pill-inactive px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <span>Citizen &amp; Consumer</span>
+        </a>
+
+        <!-- Page 3: Research & Academia -->
+        <a href="research_academia.html" class="space-pill-active px-3 py-1 rounded-lg font-bold text-xs flex items-center gap-1.5 transition">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <span>🎓 Research &amp; Academia</span>
+        </a>
+
+      </div>
+
+      <button onclick="alert('Language changed: English / हिन्दी')" class="bg-white/10 hover:bg-white/20 text-white px-2.5 py-1 rounded-lg transition border border-white/20 text-[11px]">
+        English / हिन्दी
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <header class="matte-header sticky top-0 z-30 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex justify-between items-center">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3 cursor-pointer">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#52341D] to-[#1A1009] flex items-center justify-center text-white font-bold text-xl shadow-sm border border-[#B58448]/40">
+          <svg class="w-6 h-6 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3.5 6.5l-2.1 5.6-5.6 2.1 2.1-5.6 5.6-2.1z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-muse font-extrabold text-2xl tracking-tight text-[#1A1009]">BIS SmartGuide</h1>
+            <span class="bg-[#F2EBE1] text-[#52341D] text-[11px] font-bold px-2 py-0.5 rounded-full border border-[#52341D]/20">
+              Research Space
+            </span>
+          </div>
+          <p class="text-xs text-[#614D3E] font-medium">Academic Spec Explorer, Citations & Global Equivalence</p>
+        </div>
+      </a>
+
+      <!-- Page Quick Nav Links -->
+      <div class="hidden lg:flex items-center gap-2 text-xs font-semibold">
+        <a href="index.html" class="px-3 py-2 rounded-lg text-[#614D3E] hover:text-[#52341D] hover:bg-[#F2EBE1] transition">Portal Home</a>
+        <a href="industry_seller.html" class="px-3 py-2 rounded-lg text-[#614D3E] hover:text-[#52341D] hover:bg-[#F2EBE1] transition">🏢 Industry &amp; Sellers</a>
+        <a href="citizen_consumer.html" class="px-3 py-2 rounded-lg text-[#614D3E] hover:text-[#52341D] hover:bg-[#F2EBE1] transition">🛡️ Citizens &amp; Consumers</a>
+        <a href="research_academia.html" class="px-3 py-2 rounded-lg bg-[#F2EBE1] text-[#52341D] transition">🔬 Research &amp; Academia</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Gazette Ticker -->
+  <div class="bg-[#EBE3D4] border-b border-[#D5C7B2] px-4 py-2 text-xs text-[#26170E] flex items-center gap-3 overflow-hidden">
+    <span class="bg-[#52341D] text-white font-bold text-[10px] uppercase px-2 py-0.5 rounded shrink-0 flex items-center gap-1">
+      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z"/></svg>
+      Gazette Updates
+    </span>
+    <div class="whitespace-nowrap overflow-x-auto text-[12px]">
+      <span>📢 <strong>Standards Intelligence:</strong> 24,200+ Indian Standards indexed with ISO/IEC cross-references, Sectional Committees, and clause parameters.</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-8 space-y-10">
+
+    <!-- 🚨 STRATEGIC ACCURACY BANNER (NO OVERCLAIMING) -->
+    <div class="p-3.5 rounded-2xl bg-[#F2EBE1] border border-[#DECBB3] flex items-center justify-between text-xs text-[#52341D] gap-3">
+      <div class="flex items-center gap-2.5">
+        <span class="text-base">⚖️</span>
+        <span>
+          <strong>Statutory Governance Note:</strong> BIS SmartGuide retrieves and reasons over authorized BIS knowledge sources (24,200+ Indian Standards, Gazette QCOs, LIMS labs, and SIT guidelines) to provide evidence-backed guidance.
+        </span>
+      </div>
+      <a href="index.html" class="hidden sm:inline-flex items-center gap-1 font-mono-bis text-[10px] bg-white px-2.5 py-1 rounded-lg border border-[#DFD3C2] text-[#52341D] font-bold hover:bg-[#FAF7F2] transition">
+        <span>Portal Home</span> ↗
+      </a>
+    </div>
+
+    <!-- DEDICATED RESEARCH HERO -->
+    <section class="bg-[#FAF7F2] p-6 sm:p-10 rounded-3xl border border-[#D5C7B2] gov-card-shadow">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-7 space-y-5">
+          <div class="inline-flex items-center gap-2 bg-[#F2EBE1] px-3.5 py-1.5 rounded-full border border-[#DFD3C2] text-xs text-[#52341D] font-bold">
+            <span>🎓 Dedicated Hub for Researchers, Engineers &amp; Academics</span>
+          </div>
+
+          <div class="space-y-3">
+            <h1 class="font-muse text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1A1009] leading-tight">
+              Standards Research &amp; Academic Hub
+            </h1>
+            <p class="text-sm text-[#614D3E] leading-relaxed">
+              No business intent? No problem. Explore raw <strong>metallurgical compositions</strong>, <strong>physical stress thresholds</strong>, <strong>international standards equivalence</strong> (IS vs ISO / IEC / ASTM), and generate <strong>IEEE / APA / BibTeX citations</strong> for thesis papers.
+            </p>
+          </div>
+
+          <!-- Quick Navigation Anchor Pills -->
+          <div class="flex flex-wrap gap-2 pt-2 text-xs font-bold">
+            <a href="#clauses" class="px-3 py-2 rounded-xl bg-[#52341D] text-white hover:bg-[#422815] shadow-sm transition">🔬 Technical Clause Explorer</a>
+            <a href="#global-mapping" class="px-3 py-2 rounded-xl bg-[#FAF7F2] text-[#52341D] border border-[#D5C7B2] hover:bg-[#F2EBE1] transition">🌐 IS vs ISO/IEC Equivalence</a>
+            <a href="#academic-cite" class="px-3 py-2 rounded-xl bg-[#FAF7F2] text-[#52341D] border border-[#D5C7B2] hover:bg-[#F2EBE1] transition">📜 Paper Citation Generator</a>
+            <a href="#research-compare" class="px-3 py-2 rounded-xl bg-[#FAF7F2] text-[#52341D] border border-[#D5C7B2] hover:bg-[#F2EBE1] transition">⚖️ Multi-Standard Benchmark</a>
+          </div>
+        </div>
+
+        <!-- Relatable University Lab & Materials Science Photo -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative rounded-2xl overflow-hidden border border-[#D5C7B2] shadow-sm bg-white group">
+            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80" alt="University Scientific Research Lab" class="w-full h-72 object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
+              <span class="text-[10px] uppercase font-bold bg-[#6E492C] px-2.5 py-0.5 rounded w-fit mb-1">R&amp;D Repository</span>
+              <h4 class="font-bold text-sm">Materials Science &amp; Engineering Specs</h4>
+              <p class="text-[11px] text-stone-200">Cross-indexed across 24,200+ Indian National Standards</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 1: DEEP TECHNICAL CLAUSE & MATERIAL PARAMETER EXPLORER -->
+    <section id="clauses" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <div>
+            <span class="text-xs bg-[#F2EBE1] text-[#6E492C] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DFD3C2]">Scientific Inquiry</span>
+            <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">🔬 Deep Technical Clause &amp; Material Parameter Explorer</h2>
+            <p class="text-xs sm:text-sm text-[#614D3E]">Explore material formulations, physical tolerance thresholds, and chemical migration limits without business onboarding.</p>
+          </div>
+          <span class="text-xs px-3 py-1 bg-white border border-[#D5C7B2] text-[#1A1009] rounded-xl font-mono-bis">
+            Indexed: 24,200 Standards
+          </span>
+        </div>
+
+        <!-- Research Query Search -->
+        <div class="flex gap-2">
+          <input type="text" id="researchQueryInput" placeholder="Search technical clauses (e.g. 'austenitic grade 304', 'impact deceleration limit', 'lead ppm limit')..." class="flex-1 text-sm px-4 py-3 border border-[#D5C7B2] rounded-xl outline-none bg-white">
+          <button onclick="searchResearchClauses()" class="bg-[#6E492C] hover:bg-[#52341D] text-white font-bold text-xs px-6 py-3 rounded-xl transition">
+            Search Clauses
+          </button>
+        </div>
+
+        <!-- Technical Parameters Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          
+          <!-- Param Card 1 -->
+          <div class="p-5 rounded-2xl bg-white border border-[#D5C7B2] space-y-3">
+            <div class="flex justify-between items-start">
+              <span class="font-mono-bis text-xs font-bold text-[#52341D]">IS 17803:2022</span>
+              <span class="text-[10px] bg-[#F2EBE1] text-[#52341D] px-2 py-0.5 rounded font-bold">Materials Science</span>
+            </div>
+            <h4 class="font-bold text-sm text-[#1A1009]">Austenitic Stainless Steel (Liner)</h4>
+            <div class="space-y-1 text-xs text-[#614D3E]">
+              <div>• <strong>Governing Standard:</strong> IS 6911 (Grade 304 / 316)</div>
+              <div>• <strong>Nickel Content:</strong> Min 8.0% to 10.5%</div>
+              <div>• <strong>Chromium Content:</strong> Min 18.0% to 20.0%</div>
+              <div>• <strong>Heavy Metal Leaching Limit:</strong> Lead ≤ 0.01 mg/dm²</div>
+            </div>
+          </div>
+
+          <!-- Param Card 2 -->
+          <div class="p-5 rounded-2xl bg-white border border-[#D5C7B2] space-y-3">
+            <div class="flex justify-between items-start">
+              <span class="font-mono-bis text-xs font-bold text-[#52341D]">IS 4151:2020</span>
+              <span class="text-[10px] bg-[#F2EBE1] text-[#52341D] px-2 py-0.5 rounded font-bold">Biomechanics &amp; Safety</span>
+            </div>
+            <h4 class="font-bold text-sm text-[#1A1009]">Impact Shock Dissipation (Helmets)</h4>
+            <div class="space-y-1 text-xs text-[#614D3E]">
+              <div>• <strong>Peak Acceleration Limit:</strong> &le; 300 g (gravitational)</div>
+              <div>• <strong>Drop Velocity:</strong> 7.5 m/s onto flat anvil</div>
+              <div>• <strong>Cumulative Time &gt; 150g:</strong> &le; 5.0 milliseconds</div>
+              <div>• <strong>Operating Temperature Test:</strong> -10°C and +50°C conditioning</div>
+            </div>
+          </div>
+
+          <!-- Param Card 3 -->
+          <div class="p-5 rounded-2xl bg-white border border-[#D5C7B2] space-y-3">
+            <div class="flex justify-between items-start">
+              <span class="font-mono-bis text-xs font-bold text-[#52341D]">IS 13252:2010</span>
+              <span class="text-[10px] bg-[#F2EBE1] text-[#52341D] px-2 py-0.5 rounded font-bold">Electrotechnical</span>
+            </div>
+            <h4 class="font-bold text-sm text-[#1A1009]">Lithium Battery Thermal &amp; Electrical</h4>
+            <div class="space-y-1 text-xs text-[#614D3E]">
+              <div>• <strong>Thermal Runaway Chamber:</strong> 130°C for 10 minutes</div>
+              <div>• <strong>Short Circuit Resistance:</strong> External load &le; 5 mΩ</div>
+              <div>• <strong>Enclosure Flammability:</strong> UL94 V-0 or V-1 equivalent</div>
+              <div>• <strong>Creepage &amp; Clearance Distance:</strong> Min 2.5 mm</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: GLOBAL EQUIVALENCE (IS VS ISO/IEC/ASTM) -->
+    <section id="global-mapping" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div>
+          <span class="text-xs bg-[#F2EBE1] text-[#6E492C] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DFD3C2]">International Harmonization</span>
+          <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">🌐 Indian Standards (IS) vs. Global Standards (ISO / IEC / ASTM)</h2>
+          <p class="text-xs sm:text-sm text-[#614D3E]">Cross-reference matrix showing how Indian national standards align with international bodies and tropical adaptations.</p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left bg-white rounded-2xl border border-[#D5C7B2] overflow-hidden">
+            <thead class="bg-[#EBE3D4] text-[#1A1009] font-bold border-b border-[#D5C7B2]">
+              <tr>
+                <th class="p-3.5">Indian Standard (IS)</th>
+                <th class="p-3.5">International Standard</th>
+                <th class="p-3.5">Harmonization Degree</th>
+                <th class="p-3.5">Key Regional / Tropical Indian Adaptation</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#E6DED0] text-[#614D3E]">
+              <tr>
+                <td class="p-3.5 font-bold font-mono-bis text-[#52341D]">IS 13252 (Part 1):2010</td>
+                <td class="p-3.5 font-mono-bis">IEC 60950-1 / IEC 62368-1</td>
+                <td class="p-3.5"><span class="bg-emerald-50 text-emerald-800 font-bold px-2 py-0.5 rounded">Modified (MOD)</span></td>
+                <td class="p-3.5">Rated for Indian tropical ambient up to 40°C, and 230V/50Hz mains surges.</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-bold font-mono-bis text-[#52341D]">IS 17803:2022</td>
+                <td class="p-3.5 font-mono-bis">EN 12546-1 / ASTM F2066</td>
+                <td class="p-3.5"><span class="bg-blue-50 text-blue-800 font-bold px-2 py-0.5 rounded">Equivalent (EQV)</span></td>
+                <td class="p-3.5">Added mandatory Food Contact Grade 304 austenitic liner requirement.</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-bold font-mono-bis text-[#52341D]">IS 1293:2019</td>
+                <td class="p-3.5 font-mono-bis">IEC 60884-1</td>
+                <td class="p-3.5"><span class="bg-amber-50 text-amber-800 font-bold px-2 py-0.5 rounded">National Specific</span></td>
+                <td class="p-3.5">Maintains historical Indian Type D &amp; M round 3-pin configuration with shutter safety.</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-bold font-mono-bis text-[#52341D]">IS 4151:2020</td>
+                <td class="p-3.5 font-mono-bis">ECE 22.05 / DOT FMVSS 218</td>
+                <td class="p-3.5"><span class="bg-emerald-50 text-emerald-800 font-bold px-2 py-0.5 rounded">Harmonized</span></td>
+                <td class="p-3.5">Weight limit constrained to 1,200g (earlier 1,500g) to prevent neck fatigue on Indian riders.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: ACADEMIC PAPER CITATION GENERATOR -->
+    <section id="academic-cite" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div>
+          <span class="text-xs bg-[#F2EBE1] text-[#6E492C] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DFD3C2]">Academic Publishing</span>
+          <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">📜 Academic &amp; Engineering Citation Generator</h2>
+          <p class="text-xs sm:text-sm text-[#614D3E]">Format official Indian Standards into IEEE, APA, or BibTeX references for college projects, journal papers, and research thesis.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-bold text-[#26170E]">Select Standard to Cite</label>
+            <select id="citeSelect" onchange="updateCitations()" class="w-full text-xs px-4 py-2.5 border border-[#D5C7B2] rounded-xl outline-none bg-white mt-1">
+              <option value="water">IS 13428:2005 (Packaged Natural Mineral Water)</option>
+              <option value="steel">IS 17803:2022 (Stainless Steel Vacuum Flasks)</option>
+              <option value="helmet">IS 4151:2020 (Two-Wheeler Protective Helmets)</option>
+              <option value="electronics">IS 13252 (Part 1):2010 (IT Equipment Safety)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Citation Format Boxes -->
+        <div class="space-y-4 pt-2">
+          <div class="p-4 rounded-xl bg-white border border-[#D5C7B2] space-y-1.5">
+            <div class="flex justify-between items-center">
+              <span class="text-[10px] uppercase font-bold text-[#52341D]">IEEE Format (Engineering Papers)</span>
+              <button onclick="navigator.clipboard.writeText(document.getElementById('citeIEEE').innerText); alert('Copied IEEE Citation!');" class="text-[11px] font-bold text-[#52341D] hover:underline">Copy</button>
+            </div>
+            <div id="citeIEEE" class="font-mono-bis text-xs text-[#1A1009] bg-[#FAF7F2] p-3 rounded-lg border border-[#E6DED0]">
+              Bureau of Indian Standards, "Packaged Natural Mineral Water — Specification," IS 13428:2005, New Delhi, India, 2005.
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white border border-[#D5C7B2] space-y-1.5">
+            <div class="flex justify-between items-center">
+              <span class="text-[10px] uppercase font-bold text-[#52341D]">APA 7th Edition</span>
+              <button onclick="navigator.clipboard.writeText(document.getElementById('citeAPA').innerText); alert('Copied APA Citation!');" class="text-[11px] font-bold text-[#52341D] hover:underline">Copy</button>
+            </div>
+            <div id="citeAPA" class="text-xs text-[#1A1009] bg-[#FAF7F2] p-3 rounded-lg border border-[#E6DED0]">
+              Bureau of Indian Standards. (2005). <em>Packaged Natural Mineral Water — Specification</em> (IS 13428:2005). Manak Bhawan, New Delhi.
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white border border-[#D5C7B2] space-y-1.5">
+            <div class="flex justify-between items-center">
+              <span class="text-[10px] uppercase font-bold text-[#52341D]">BibTeX Format (LaTeX)</span>
+              <button onclick="navigator.clipboard.writeText(document.getElementById('citeBibTeX').innerText); alert('Copied BibTeX code!');" class="text-[11px] font-bold text-[#52341D] hover:underline">Copy</button>
+            </div>
+            <pre id="citeBibTeX" class="font-mono-bis text-[11px] text-[#1A1009] bg-[#FAF7F2] p-3 rounded-lg border border-[#E6DED0] overflow-x-auto">@standard{is13428_2005,
+  author    = {{Bureau of Indian Standards}},
+  title     = {Packaged Natural Mineral Water --- Specification},
+  number    = {IS 13428:2005},
+  year      = {2005},
+  address   = {New Delhi, India}
+}</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: MULTI-STANDARD PARAMETER BENCHMARK -->
+    <section id="research-compare" class="space-y-6">
+      <div class="bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#D5C7B2] gov-card-shadow space-y-6">
+        <div>
+          <span class="text-xs bg-[#F2EBE1] text-[#6E492C] px-2.5 py-0.5 rounded-full font-bold uppercase border border-[#DFD3C2]">Scientific Analysis</span>
+          <h2 class="font-muse text-2xl font-bold text-[#1A1009] mt-1">⚖️ Comparative Scientific Benchmark</h2>
+          <p class="text-xs sm:text-sm text-[#614D3E]">Compare microbiological and chemical thresholds across related standards side-by-side.</p>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white border border-[#D5C7B2] space-y-4">
+          <h4 class="font-bold text-sm text-[#1A1009]">Packaged Natural Mineral Water (IS 13428) vs. Packaged Drinking Water (IS 14543) vs. WHO Limits</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <thead class="bg-[#EBE3D4] text-[#1A1009] font-bold">
+                <tr>
+                  <th class="p-2.5">Test Parameter</th>
+                  <th class="p-2.5">IS 13428 (Mineral Water)</th>
+                  <th class="p-2.5">IS 14543 (Drinking Water)</th>
+                  <th class="p-2.5">WHO Guideline (2022)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#E6DED0] text-[#614D3E]">
+                <tr>
+                  <td class="p-2.5 font-bold">Source Requirement</td>
+                  <td class="p-2.5 text-[#52341D] font-semibold">Underground natural source only</td>
+                  <td class="p-2.5">Any potable source (RO/UV treated)</td>
+                  <td class="p-2.5">Any treated sanitary source</td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 font-bold">Total Dissolved Solids (TDS)</td>
+                  <td class="p-2.5 text-[#52341D] font-semibold">150 mg/L to 700 mg/L</td>
+                  <td class="p-2.5">75 mg/L to 500 mg/L</td>
+                  <td class="p-2.5">&le; 1000 mg/L acceptable</td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 font-bold">Arsenic (as As)</td>
+                  <td class="p-2.5 text-[#52341D] font-semibold">Max 0.01 mg/L</td>
+                  <td class="p-2.5">Max 0.01 mg/L</td>
+                  <td class="p-2.5">Max 0.01 mg/L</td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 font-bold">Coliform Organisms</td>
+                  <td class="p-2.5 text-red-700 font-bold">Absent in 250 mL</td>
+                  <td class="p-2.5 text-red-700 font-bold">Absent in 250 mL</td>
+                  <td class="p-2.5 text-red-700 font-bold">Zero in 100 mL</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    function updateCitations() {
+      const val = document.getElementById('citeSelect').value;
+      const ieee = document.getElementById('citeIEEE');
+      const apa = document.getElementById('citeAPA');
+      const bib = document.getElementById('citeBibTeX');
+
+      if (val === 'steel') {
+        ieee.innerText = `Bureau of Indian Standards, "Stainless Steel Vacuum Flasks and Insulated Bottles," IS 17803:2022, New Delhi, India, 2022.`;
+        apa.innerHTML = `Bureau of Indian Standards. (2022). <em>Stainless Steel Vacuum Flasks and Insulated Bottles</em> (IS 17803:2022). Manak Bhawan, New Delhi.`;
+        bib.innerText = `@standard{is17803_2022,\n  author    = {{Bureau of Indian Standards}},\n  title     = {Stainless Steel Vacuum Flasks and Insulated Bottles},\n  number    = {IS 17803:2022},\n  year      = {2022},\n  address   = {New Delhi, India}\n}`;
+      } else if (val === 'helmet') {
+        ieee.innerText = `Bureau of Indian Standards, "Protective Helmets for Riders of Two Wheeled Motor Vehicles," IS 4151:2020, New Delhi, India, 2020.`;
+        apa.innerHTML = `Bureau of Indian Standards. (2020). <em>Protective Helmets for Riders of Two Wheeled Motor Vehicles</em> (IS 4151:2020). Manak Bhawan, New Delhi.`;
+        bib.innerText = `@standard{is4151_2020,\n  author    = {{Bureau of Indian Standards}},\n  title     = {Protective Helmets for Riders of Two Wheeled Motor Vehicles},\n  number    = {IS 4151:2020},\n  year      = {2020},\n  address   = {New Delhi, India}\n}`;
+      } else if (val === 'electronics') {
+        ieee.innerText = `Bureau of Indian Standards, "Information Technology Equipment — Safety (General Requirements)," IS 13252 (Part 1):2010, New Delhi, India, 2010.`;
+        apa.innerHTML = `Bureau of Indian Standards. (2010). <em>Information Technology Equipment — Safety (General Requirements)</em> (IS 13252 (Part 1):2010). Manak Bhawan, New Delhi.`;
+        bib.innerText = `@standard{is13252_2010,\n  author    = {{Bureau of Indian Standards}},\n  title     = {Information Technology Equipment --- Safety (General Requirements)},\n  number    = {IS 13252 (Part 1):2010},\n  year      = {2020},\n  address   = {New Delhi, India}\n}`;
+      } else {
+        ieee.innerText = `Bureau of Indian Standards, "Packaged Natural Mineral Water — Specification," IS 13428:2005, New Delhi, India, 2005.`;
+        apa.innerHTML = `Bureau of Indian Standards. (2005). <em>Packaged Natural Mineral Water — Specification</em> (IS 13428:2005). Manak Bhawan, New Delhi.`;
+        bib.innerText = `@standard{is13428_2005,\n  author    = {{Bureau of Indian Standards}},\n  title     = {Packaged Natural Mineral Water --- Specification},\n  number    = {IS 13428:2005},\n  year      = {2005},\n  address   = {New Delhi, India}\n}`;
+      }
+    }
+
+    function searchResearchClauses() {
+      const q = document.getElementById('researchQueryInput').value.trim();
+      if (!q) return;
+      alert("Research Explorer: Querying authorized BIS technical repository for specifications matching: '" + q + "'");
+    }
+
+    window.addEventListener('DOMContentLoaded', updateCitations);
+  </script>
+
+  <!-- Government Footer (Espresso & Khaki Matte) -->
+  <footer class="bg-[#1A1009] text-[#D5C7B2] border-t border-[#26170E] mt-16 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded bg-[#52341D] text-white flex items-center justify-center font-bold text-[10px]">ISI</div>
+          <span class="font-muse font-bold text-lg text-white">BIS SmartGuide</span>
+        </div>
+        <p class="text-[#C5B498] leading-relaxed text-[11px]">
+          Smart India Hackathon 2026 Innovation (SIH26107). Tri-Space AI reasoning ecosystem for Industry, Consumers, and Academic Researchers.
+        </p>
+      </div>
+
+      <div class="space-y-2 text-[11px]">
+        <div class="font-bold text-white uppercase tracking-wider text-xs">Industry Tools</div>
+        <div class="flex flex-col gap-1 text-[#C5B498]">
+          <a href="industry_seller.html" class="hover:text-amber-200">AI Standards Advisor</a>
+          <a href="industry_seller.html#onboarding" class="hover:text-amber-200">Product Onboarding &amp; Dossier</a>
+          <a href="industry_seller.html#fee-calc" class="hover:text-amber-200">Statutory Fee Calculator</a>
+          <a href="industry_seller.html#labs" class="hover:text-amber-200">LIMS Recognized Labs</a>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-[11px]">
+        <div class="font-bold text-white uppercase tracking-wider text-xs">Consumer Hub</div>
+        <div class="flex flex-col gap-1 text-[#C5B498]">
+          <a href="citizen_consumer.html" class="hover:text-amber-200">Verify ISI License &amp; HUID</a>
+          <a href="citizen_consumer.html#fake-detector" class="hover:text-amber-200">Counterfeit Red Flags</a>
+          <a href="citizen_consumer.html#grievance" class="hover:text-amber-200">Report Substandard Goods</a>
+          <a href="citizen_consumer.html#buying-guide" class="hover:text-amber-200">Safe Buying Checklists</a>
+        </div>
+      </div>
+
+      <div class="space-y-2 text-[11px]">
+        <div class="font-bold text-white uppercase tracking-wider text-xs">Research &amp; Academia</div>
+        <div class="flex flex-col gap-1 text-[#C5B498]">
+          <a href="research_academia.html" class="hover:text-amber-200">Technical Clause Explorer</a>
+          <a href="research_academia.html#global-mapping" class="hover:text-amber-200">IS vs ISO/IEC Equivalence</a>
+          <a href="research_academia.html#academic-cite" class="hover:text-amber-200">Paper Citation Generator</a>
+          <a href="research_academia.html#research-compare" class="hover:text-amber-200">Multi-Standard Benchmark</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 py-4 text-center text-[10px] text-stone-400">
+      © 2026 BIS SmartGuide • Dedicated Tri-Portal Architecture for Smart India Hackathon 2026 • Bureau of Indian Standards
+    </div>
+  </footer>
+</body>
+</html>
