@@ -1,3 +1,6 @@
+# Environment & Local Secrets
+.env
+
 # Temporary files
 *.tmp
 *.log
