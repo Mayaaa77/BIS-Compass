@@ -1,0 +1,13 @@
+{
+  "name": "bis-compass",
+  "version": "1.0.0",
+  "description": "BIS Compass - Universal Barcode & QR Code Standards Verification Portal",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "start": "npx -y serve -s . -l $PORT"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
